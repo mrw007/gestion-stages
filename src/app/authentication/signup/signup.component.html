@@ -1,0 +1,263 @@
+<div class="d-flex align-items-stretch flex-nowrap min-height-100 h-100">
+  <div class="bg-cover bg-2 hidden-sm-down col-md-12">
+  <div class="card card-block mb-0 rounded-0 p-6 col-sm-12 col-md-6" style="margin-left:25%;margin-top: 10%">
+      <div class="mb-3">
+        <img src="assets/images/logo.png" class="avatar-xs mb-1" alt="">
+        <h5 class="ff-headers">S'enregister</h5>
+        <br>
+        <div class="row">
+            <label for="">
+                Vous êtes  &nbsp;&nbsp; 
+              </label>
+              <br>
+          <fieldset>
+              <select class="form-control" name="etat" [(ngModel)]="status" (ngModelChange)="print()">
+                <option disabled selected  value="-1">---- Votre Status ----</option>
+                <option *ngFor="let statut of statuses" [value]="statut.value">{{statut.name}}</option>
+              </select>
+          </fieldset>
+        </div>
+        <br>
+        <ng-template *ngIf="status=='enseignant';then enseignant; "></ng-template>
+        <ng-template *ngIf="status=='etudiant';then etudiant; "></ng-template>
+        <ng-template *ngIf="status=='entreprise';then entreprise;"></ng-template>
+        <ng-template #etudiant>
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="card  col-md-4"> Informations Générales <br><br>
+              <fieldset class="form-group">
+                <label for="nom">
+                  Votre Nom
+                </label>
+                <input type="text" class="form-control" placeholder="Nom" required/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="prenom">
+                  Votre Prénom
+                </label>
+                <input type="text" class="form-control" placeholder="Prénom" required/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="cin">
+                  Votre CIN
+                </label>
+                <input type="text" class="form-control" placeholder="CIN" required/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="date_naiss">
+                  Votre Date de Naissance
+                </label>
+                <div>
+                  <div>
+                    <input class="form-control" type="date" value="1991-01-01" id="example-date-input" required>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4" > Informations Etudes <br><br>
+              <fieldset class="form-group">
+                <label for="inscrit">
+                  Votre Numéro d'insripton
+                </label>
+                <input type="text" class="form-control" placeholder="Numéro d'inscription" required/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="cy_etud">
+                  Votre cycle d'études
+                </label>
+                <div>
+                  <select class="form-control" name="cy_etud" required>
+                    <option disabled>---- Licence ----</option>
+                    <option value="Licence Appliquée Technologie Multimédia et Web">Licence Appliquée Technologie Multimédia et Web</option>
+                    <option value="Licence Fondamentale Informatique et Multimédia">Licence Fondamentale Informatique et Multimédia</option>
+                    <option disabled>---- Master ----</option>
+                    <option value="Master de Recherche">Master de Recherche</option>
+                    <option disabled>---- Ingénieur ----</option>
+                    <option value="ingénieur">ingénieur</option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="niv_etud">
+                  Votre Niveau d'études
+                </label>
+                <div>
+                  <select class="form-control" name="niv_etud" required>
+                    <option disabled>---- Niveau d'études ----</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4"> Informations Compte <br><br>
+              <fieldset class="form-group">
+                <label for="email">
+                  Votre Email
+                </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon">@</div>
+                  <input type="email" class="form-control" placeholder="email" required/>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Mot de passe" required/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Comfirmer votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Comfirmer Mot de passe" required/>
+              </fieldset>
+              <br>
+              <a class="btn btn-outline-primary btn-link" [routerLink]="['/authentication/signin']">Login!</a>
+              <button class="btn btn-primary" type="submit" [disabled]="!form.valid">S'enregistrer</button>
+            </div>
+          </div>
+          </form>
+        </ng-template>
+        <ng-template #enseignant>
+         <form (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="card  col-md-6"> Informations Générales <br><br>
+              <fieldset class="form-group">
+                <label for="nom">
+                  Votre Nom
+                </label>
+                <input type="text" class="form-control" placeholder="Nom"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="prenom">
+                  Votre Prénom
+                </label>
+                <input type="text" class="form-control" placeholder="Prénom"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="cin">
+                  Votre CIN
+                </label>
+                <input type="text" class="form-control" placeholder="CIN"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="grade">
+                  Votre Grade
+                </label>
+                <div>
+                  <select class="form-control" name="grade" id="">
+                    <option value="1">7keya</option>
+                    <option value="1">7keya2</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-6"> Informations Compte <br><br>
+              <fieldset class="form-group">
+                <label for="email">
+                  Votre Email
+                </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon">@</div>
+                  <input type="email" class="form-control" placeholder="email"/>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Mot de passe"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Comfirmer votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Comfirmer Mot de passe"/>
+              </fieldset>
+              <br>
+              <a class="btn btn-outline-primary btn-link" [routerLink]="['/authentication/signin']">Login!</a>
+              <button class="btn btn-primary" type="submit" [disabled]="!form.valid">S'enregistrer</button>
+            </div>
+          </div>
+          </form>
+        </ng-template>
+        <ng-template #entreprise>
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="card  col-md-4"> Informations Générales <br><br>
+              <fieldset class="form-group">
+                <label for="nom">
+                  Votre Nom
+                </label>
+                <input type="text" class="form-control" placeholder="Nom"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="prenom">
+                  Votre Prénom
+                </label>
+                <input type="text" class="form-control" placeholder="Prénom"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="cin">
+                  Votre CIN
+                </label>
+                <input type="number" class="form-control" placeholder="CIN"/>
+              </fieldset>
+            </div>
+            <div class="col-md-4" > Informations Entreprise <br><br>
+              <fieldset class="form-group">
+                <label for="nom_ent">
+                  Nom d'entreprise
+                </label>
+                <input type="text" class="form-control" placeholder="Nom Entreprise"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="nom_ent">
+                  Téléphone d'entreprise
+                </label>
+                <input type="tel" class="form-control" placeholder="Téléphone Entreprise"/>
+              </fieldset>
+              <fieldset class="form-group"  >
+                <label for="nom_ent">
+                  Téléphone d'entreprise
+                </label>
+                <div>
+                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4"> Informations Compte <br><br>
+              <fieldset class="form-group">
+                <label for="email">
+                  Votre Email
+                </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon">@</div>
+                  <input type="email" class="form-control" placeholder="email" />
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Mot de passe"/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="password">
+                  Comfirmer votre Mot de passe
+                </label>
+                <input type="password" class="form-control" placeholder="Comfirmer Mot de passe"/>
+              </fieldset>
+              <br>
+              <a class="btn btn-outline-primary btn-link" [routerLink]="['/authentication/signin']">Login!</a>
+              <button class="btn btn-primary" type="submit" [disabled]="!form.valid">S'enregistrer</button>
+            </div>
+          </div>
+        </form>        
+        </ng-template>
+      </div>
+  </div>
+</div>
+</div>
