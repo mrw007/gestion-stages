@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
       {name:"Entreprise",value:'entreprise'}   
   ]
   status:string='-1';
+  test:string;
   constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
