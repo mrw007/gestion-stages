@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">Media list</div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Sujet</th>
+            <th>Description</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Entreprise</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stages of stages">
+            <td>{{ stages.sujet_stage }}</td>
+            <td>{{ stages.desc_stage }}</td>
+            <td>{{ stages.date_deb }}</td>
+            <td>{{ stages.date_fin }}</td>
+            <td>{{ stages.nom_ent }}</td>
+            <td><a href="#">Plus d'informations</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

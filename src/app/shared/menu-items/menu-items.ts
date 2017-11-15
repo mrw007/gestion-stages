@@ -28,7 +28,7 @@ const MENUITEMS = [
     icon: 'basic-home'
   },
   {
-    state: 'offres_de_stages',
+    state: 'listes',
     name: 'Offres de Stages',
     type: 'link',
     icon: 'basic-todo-pen'
