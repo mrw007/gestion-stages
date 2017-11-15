@@ -34,9 +34,6 @@ export const AppRoutes: Routes = [{
     path: 'charts',
     loadChildren: './charts/charts.module#ChartsModule'
   }, {
-    path: 'maps',
-    loadChildren: './maps/maps.module#MapsModule'
-  }, {
     path: 'pages',
     loadChildren: './pages/pages.module#PagesModule'
   }, {
@@ -49,14 +46,15 @@ export const AppRoutes: Routes = [{
     path: 'media',
     loadChildren: './media/media.module#MediaModule'
   }, {
-    path: 'widgets',
-    loadChildren: './widgets/widgets.module#WidgetsModule'
-  }, {
     path: 'social',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
   }, {
     path: 'docs',
     loadChildren: './docs/docs.module#DocsModule'
+  },
+  {
+    path: 'listes',
+    loadChildren: './listes/listes.module#ListesModule'
   }]
 }, {
   path: '',

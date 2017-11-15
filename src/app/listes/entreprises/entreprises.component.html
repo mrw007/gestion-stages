@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">Media list</div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Nom Entreprise</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Téléphone Entreprise</th>
+            <th>Téléphone Fax</th>
+            <th>Email</th>
+            <th>Adresse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.nom_ent }}</td>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.tel_ent }}</td>
+            <td>{{ user.fax_ent }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.adresse_ent }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

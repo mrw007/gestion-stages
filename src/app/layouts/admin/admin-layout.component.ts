@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 export interface Options {
   heading?: string;
   removeFooter?: boolean;
-  mapHeader?: boolean;
+ // mapHeader?: boolean;
 }
 
 @Component({
@@ -59,9 +59,9 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       // Scroll to top on view load
       document.querySelector('.main-content').scrollTop = 0;
 
-      if (this.isOver() || event.url === '/maps/fullscreen') {
+     /* if (this.isOver() || event.url === '/maps/fullscreen') {
         this.isOpened = false;
-      }
+      }*/
 
       this.route.children.forEach((route: ActivatedRoute) => {
         let activeRoute: ActivatedRoute = route;
