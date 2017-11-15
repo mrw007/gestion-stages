@@ -53,12 +53,12 @@ export const AppRoutes: Routes = [{
     loadChildren: './docs/docs.module#DocsModule'
   },
   {
-    path: 'forms',
-    loadChildren: './forms/forms.module#FormsModule'
-  },
-  {
     path: 'listes',
     loadChildren: './listes/listes.module#ListesModule'
+  },
+  {
+    path: 'formulaires',
+    loadChildren: './formulaires/formulaires.module#FormulairesModule'
   }]
 }, {
   path: '',

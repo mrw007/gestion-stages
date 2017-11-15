@@ -2,16 +2,14 @@ import { Routes } from '@angular/router';
 
 import { ProposerStageComponent } from './proposer-stage/proposer-stage.component';
 
-export const FormsRoutes: Routes = [
-  {
+export const FormulairesRoutes: Routes = [{
     path: '',
     children: [{
-      path: 'p_stage',
+      path: 'proposer_stage',
       component: ProposerStageComponent,
       data: {
-        heading: 'Proposer un Stage'
-      }
+        heading: 'Proposer un stage'
+      },
       
     }]
-  }
-];
+}];
