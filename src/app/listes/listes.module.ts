@@ -7,12 +7,13 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { EnseignantsComponent } from './enseignants/enseignants.component';
 import { EntreprisesComponent } from './entreprises/entreprises.component';
 import { StagesValidesComponent } from './stages-valides/stages-valides.component';
+import { StagesProposesComponent } from './stages-proposes/stages-proposes.component';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(ListesRoutes),
     NgbTooltipModule
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent]
 })
 export class ListesModule { }

@@ -9,7 +9,7 @@
             <th>Date Début</th>
             <th>Date Fin</th>
             <th>Entreprise</th>
-            <th></th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +19,18 @@
             <td>{{ stages.date_deb }}</td>
             <td>{{ stages.date_fin }}</td>
             <td>{{ stages.nom_ent }}</td>
-            <td><a href="#">Plus d'informations</a></td>
+            <td>
+                <button type="button" class="btn btn-success btn-icon mr-1 mb-1">
+                    <i class="icon icon-arrows-check"></i>
+                    <span>Accepter</span>
+                  </button>
+              <span>
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1">
+                <i class="icon icon-basic-ban"></i>
+                <span>Refuser</span>
+              </button>
+            </span>
+            </td>
           </tr>
         </tbody>
       </table>
