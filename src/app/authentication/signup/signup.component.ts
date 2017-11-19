@@ -28,13 +28,14 @@ export class SignupComponent implements OnInit {
   email: string='';
   pass:string='';
   comf_pass: string='';
+  tel:string='';
 
 //init Etudiant Form Values
 
   dateNess: Date;
-  numInscrit: string='';
   cy_etud: string='';
   niv_etud: string='';
+  spec:string='';
 
 //init Enseignant Form Values
 
@@ -44,6 +45,7 @@ grade: string='';
 
 nomEntreprise: string='';
 telEntreprise: string='';
+faxEntreprise: string='';
 adresseEntreprise: string='';
 
 
@@ -66,8 +68,9 @@ adresseEntreprise: string='';
       pass:new FormControl(),
       comf_pass: new FormControl(),
       dateNess:  new FormControl(),
-      numInscrit:  new FormControl(),
       cy_etud:  new FormControl(),
+      tel:  new FormControl(),
+      spec:  new FormControl(),
       niv_etud:  new FormControl(),
     });
 
@@ -78,6 +81,7 @@ adresseEntreprise: string='';
     email: new FormControl(),
     pass:new FormControl(),
     comf_pass: new FormControl(),
+    tel:  new FormControl(),
     grade: new FormControl()
     });
 
@@ -90,6 +94,7 @@ adresseEntreprise: string='';
       comf_pass: new FormControl(),
       nomEntreprise: new FormControl(),
       telEntreprise: new FormControl(),
+      faxEntreprise: new FormControl(),
       adresseEntreprise: new FormControl()
     });
 
@@ -117,8 +122,9 @@ submitEtudiant(post)
     this.pass =post.pass;
     this.comf_pass = post.comf_pass;
     this.dateNess = post.dateNess;
-    this.numInscrit = post.numInscrit;
     this.cy_etud = post.cy_etud;
+    this.spec = post.spec;
+    this.tel = post.tel;
     this.niv_etud = post.niv_etud;
 
    //testing forms do not delete! 
@@ -137,6 +143,7 @@ submitEntreprise(post)
     this.comf_pass = post.comf_pass;
     this.nomEntreprise = post.nomEntreprise;
     this.telEntreprise = post.telEntreprsie;
+    this.faxEntreprise = post.faxEntreprsie;
     this.adresseEntreprise = post.adresseEntreprise;
 
   //testing forms do not delete!
@@ -152,6 +159,7 @@ submitEnseignant(post)
     this.email = post.email;
     this.pass =post.pass;
     this.comf_pass = post.comf_pass;
+    this.tel = post.tel;
     this.grade = post.grade;
 
   //testing forms do not delete!

@@ -26,37 +26,40 @@
     <!-- main navigation -->
     <nav class="menu">
       <ul class="navigation" appAccordion>
-        <li class="navigation-item" appAccordionLink *ngFor="let menuitem of menuItems.getAll()" group="{{menuitem.state}}">
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
-            <i class="icon icon-{{ menuitem.icon }}"></i>
-            <span>{{ menuitem.name | translate }}</span>
+        <li class="navigation-item" appAccordionLink>
+          <a class="navigation-link" appAccordionToggle [routerLink]="['/']">
+            <i class="icon icon-basic-home"></i>
+            <span>Acceuil</span>
             <span class="mr-auto"></span>
-            <span class="badge badge-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
-          <a class="navigation-link" appAccordionToggle href="{{menuitem.state}}" *ngIf="menuitem.type === 'extLink'">
-            <i class="icon icon-{{ menuitem.icon }}"></i>
-            <span>{{ menuitem.name | translate }}</span>
+        </li>
+        <li class="navigation-item" appAccordionLink>
+          <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/stages_valides']">
+            <i class="icon icon-basic-todo-pen"></i>
+            <span>Offres de Stages</span>
             <span class="mr-auto"></span>
-            <span class="badge badge-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
-          <a class="navigation-link" appAccordionToggle href="{{menuitem.state}}" target="_blank" *ngIf="menuitem.type === 'extTabLink'">
-            <i class="icon icon-{{ menuitem.icon }}"></i>
-            <span>{{ menuitem.name | translate }}</span>
+        </li>
+        <li class="navigation-item" appAccordionLink>
+          <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/offres_de_PFE']">
+            <i class="icon icon-basic-todolist-pencil"></i>
+            <span>Offres de PFE</span>
             <span class="mr-auto"></span>
-            <span class="badge badge-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
           </a>
-          <a class="navigation-link" appAccordionToggle href="javascript:;" *ngIf="menuitem.type === 'sub'">
-            <i class="icon icon-{{ menuitem.icon }}"></i>
-            <span>{{ menuitem.name | translate }}</span>
+        </li>
+        <li class="navigation-item" appAccordionLink>
+          <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
+            <i class="icon icon-basic-message-txt"></i>
+            <span>Contact</span>
             <span class="mr-auto"></span>
-            <span class="badge badge-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span>
-            <i class="menu-caret icon icon-arrows-right"></i>
           </a>
-          <ul class="navigation-submenu" *ngIf="menuitem.type === 'sub'">
-            <li class="navigation-item" *ngFor="let childitem of menuitem.children" routerLinkActive="open">
-              <a [routerLink]="['/', menuitem.state, childitem.state ]" class="navigation-link relative">{{ childitem.name | translate }}</a>
-            </li>
-          </ul>
+        </li>
+        <li class="navigation-item" appAccordionLink>
+          <a class="navigation-link" appAccordionToggle [routerLink]="['/bibliotheque']">
+            <i class="icon icon-basic-postcard"></i>
+            <span>Bibliotheque</span>
+            <span class="mr-auto"></span>
+          </a>
         </li>
         <li class="navigation-item"><hr class="mt-0 mb-0" /></li>
       </ul>
