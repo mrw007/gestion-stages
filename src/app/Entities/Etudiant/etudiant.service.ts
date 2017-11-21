@@ -1,51 +1,42 @@
+import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Etudiant } from './etudiant';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs';
+
 @Injectable()
 export class EtudiantService {
     //URL for CRUD operations
-    etudiantUrl = "http://localhost:8000/utilisateur";
+    etudiantUrl = "http://localhost:8000/api/etudiant";
     //Create constructor to get Http instance
     constructor(private http: Http) { }
     //Fetch all Etudiants
-    getAllArticles(): Observable<Etudiant[]> {
-        return this.http.get(this.etudiantUrl)
-            .map(this.extractData)
-            .catch(this.handleError);
+    getAllEtudiants(): Observable<Etudiant[]> {
+        return this.http.get(this.etudiantUrl).map(this.extractData).catch(this.handleError);
     }
     //Fetch Etudiant by id
-    getArticleById(etudiantId: string): Observable<Etudiant> {
+    getEtudiantById(etudiantId: string): Observable<Etudiant> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
         console.log(this.etudiantUrl + "/" + etudiantId);
-        return this.http.get(this.etudiantUrl + "/" + etudiantId)
-            .map(this.extractData)
-            .catch(this.handleError);
+        return this.http.get(this.etudiantUrl + "/" + etudiantId).map(this.extractData).catch(this.handleError);
     }
     //Create Etudiant
-    createArticle(etudiant: Etudiant): Observable<number> {
+    createEtudiant(etudiant: Etudiant): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.post(this.etudiantUrl, etudiant, options)
-            .map(success => success.status)
-            .catch(this.handleError);
+        return this.http.post(this.etudiantUrl, etudiant, options).map(success => success.status).catch(this.handleError);
     }
     //Update Etudiant
-    updateArticle(etudiant: Etudiant): Observable<number> {
+    updateEtudiant(etudiant: Etudiant): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.put(this.etudiantUrl + "/" + etudiant.id, etudiant, options)
-            .map(success => success.status)
-            .catch(this.handleError);
+        return this.http.put(this.etudiantUrl + "/" + etudiant.id, etudiant, options).map(success => success.status).catch(this.handleError);
     }
     //Delete Etudiant	
-    deleteArticleById(etudiantId: string): Observable<number> {
+    deleteEtudiantById(etudiantId: string): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.delete(this.etudiantUrl + "/" + etudiantId)
-            .map(success => success.status)
-            .catch(this.handleError);
+        return this.http.delete(this.etudiantUrl + "/" + etudiantId).map(success => success.status).catch(this.handleError);
     }
     //Extract Data method
     private extractData(res: Response) {

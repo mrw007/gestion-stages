@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
+import { Enseignant } from 'app/Entities/Enseignant/enseignant';
 
 @Component({
   selector: 'app-enseignants',
@@ -6,24 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./enseignants.component.scss']
 })
 export class EnseignantsComponent {
-  users = [
-    {
-      'cin': '11065974',
-      'nom': 'Ben Salah', 
-      'prenom': 'Ali',
-      'tel': '23689754', 
-      'email': 'ali@gmail.com', 
-      'grade': 'Maitre Assistant'
-    },
-    {
-      'cin': '11067542',
-      'nom': 'Gharbi', 
-      'prenom': 'Amal',
-      'tel': '55195859', 
-      'email': 'amal@gmail.com', 
-      'grade': 'Maitre Assistante'
-    }
-  ];
+  constructor(private enseignantService: EnseignantService) {
+  }
+  
+  statusCode: number;
+  requestProcessing = false;
+  articleIdToUpdate = null;
+  processValidation = false;
+  enseignants: Enseignant[];
+  
+  ngOnInit(): void {
+       this.getAllEnseignants();
+  } 
+
+  getAllEnseignants() {
+       this.enseignantService.getAllEnseignants().subscribe(
+               data => this.enseignants = data,
+               errorCode =>  this.statusCode = errorCode);  
+               console.log('getAllEnseignants'); 
+  }
 }
+
+
 
 
