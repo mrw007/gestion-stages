@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import {FormsModule} from '@angular/forms';
+import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
+import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
+import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
+import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -13,7 +18,9 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-
+  errorMessage: String;
+  etudiant:any;
+  statusCode: number;
 // init formGroups
 
   public EtudiantForm: FormGroup;
@@ -58,7 +65,7 @@ adresseEntreprise: string='';
   test:string;
 
   
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router ,private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService) {
 
     this.EtudiantForm = new FormGroup({
       nom: new FormControl(),
@@ -127,9 +134,17 @@ submitEtudiant(post)
     this.tel = post.tel;
     this.niv_etud = post.niv_etud;
 
-   //testing forms do not delete! 
+  this.etudiant =new Etudiant( "0", post.email,post.pass,post.cin,post.nom,post.prenom,post.tel,post.dateNess,post.cy_etud,post.niv_etud,post.spec);
+  console.log("heka etudiant",  this.etudiant); 
+  this.etudiantService.createEtudiant(this.etudiant)
+    .subscribe(successCode => {
+      this.statusCode = successCode;
+     
+    },
+    errorCode => this.statusCode = errorCode
+    );
 
-   console.log("submitEtudiant", post);  
+   console.log("submitEtudiant",  this.statusCode);  
 
   }
 submitEntreprise(post)

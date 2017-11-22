@@ -8,6 +8,9 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { ForgotComponent } from './forgot/forgot.component';
 import { LockscreenComponent } from './lockscreen/lockscreen.component';
+import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
+import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
+import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 
 @NgModule({
   imports: [
@@ -15,6 +18,11 @@ import { LockscreenComponent } from './lockscreen/lockscreen.component';
     RouterModule.forChild(AuthenticationRoutes),
     FormsModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    EtudiantService,
+    EnseignantService,
+    EntrepriseService
   ],
   declarations: [SigninComponent, SignupComponent, ForgotComponent, LockscreenComponent]
 })

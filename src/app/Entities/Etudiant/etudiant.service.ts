@@ -22,8 +22,9 @@ export class EtudiantService {
     }
     //Create Etudiant
     createEtudiant(etudiant: Etudiant): Observable<number> {
-        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let cpHeaders = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: cpHeaders });
+        console.log(etudiant);
         return this.http.post(this.etudiantUrl, etudiant, options).map(success => success.status).catch(this.handleError);
     }
     //Update Etudiant
