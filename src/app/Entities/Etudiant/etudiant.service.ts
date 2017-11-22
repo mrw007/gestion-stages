@@ -40,8 +40,8 @@ export class EtudiantService {
     }
     //Extract Data method
     private extractData(res: Response) {
-        let body = res.json();
-        return body;
+        let body =res.json();
+        return body || [];
     }
     //Handle Error method
     private handleError(error: Response | any) {
