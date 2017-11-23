@@ -8,6 +8,8 @@ import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
+import { Enseignant } from 'app/Entities/Enseignant/enseignant';
+import { Entreprise } from 'app/Entities/Entreprise/entreprise';
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -20,6 +22,8 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 export class SignupComponent implements OnInit {
   errorMessage: String;
   etudiant:any;
+  enseignant:any;
+  entreprise:any;
   statusCode: number;
 // init formGroups
 
@@ -161,8 +165,17 @@ submitEntreprise(post)
     this.faxEntreprise = post.faxEntreprsie;
     this.adresseEntreprise = post.adresseEntreprise;
 
-  //testing forms do not delete!
-  console.log("submitEntreprise", post);  
+    this.entreprise =new Entreprise( "0", post.email,post.pass,post.cin,post.nom,post.prenom,post.nomEntreprise,post.telEntreprsie,post.faxEntreprise,post.adresseEntreprise);
+    console.log("heki entreprise",  this.entreprise); 
+    this.entrepriseService.createEntreprise(this.entreprise)
+      .subscribe(successCode => {
+        this.statusCode = successCode;
+       
+      },
+      errorCode => this.statusCode = errorCode
+      );
+  
+     console.log("submitEntreprise",  this.statusCode);    
 
   }  
 submitEnseignant(post)
@@ -177,8 +190,16 @@ submitEnseignant(post)
     this.tel = post.tel;
     this.grade = post.grade;
 
-  //testing forms do not delete!
-
-    console.log("submitEnseignant", post);
+    this.enseignant =new Enseignant( "0", post.email,post.pass,post.cin,post.nom,post.prenom,post.tel,post.grade);
+    console.log("heka enseignant",  this.enseignant); 
+    this.enseignantService.createEnseignant(this.enseignant)
+      .subscribe(successCode => {
+        this.statusCode = successCode;
+       
+      },
+      errorCode => this.statusCode = errorCode
+      );
+  
+     console.log("submitEnseignant",  this.statusCode);  
   }  
 }

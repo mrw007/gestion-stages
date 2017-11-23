@@ -1,6 +1,6 @@
 export class Enseignant {
     constructor( 
-        public id:number,
+        public id:string,
         public email:string,
         public password:string,
         public cin:string,
