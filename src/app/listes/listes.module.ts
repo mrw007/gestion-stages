@@ -11,6 +11,7 @@ import { StagesProposesComponent } from './stages-proposes/stages-proposes.compo
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
+import { CompteService } from 'app/Entities/Compte/compte.service';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
   providers: [
     EtudiantService,
     EnseignantService,
-    EntrepriseService
+    EntrepriseService,
+    CompteService
   ],
   declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent]
 })
