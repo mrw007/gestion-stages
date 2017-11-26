@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entreprise } from './entreprise';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { AcceptEntreprise } from 'app/Entities/Entreprise/AcceptEntreprise';
 @Injectable()
 export class EntrepriseService {
     //URL for CRUD operations
     entrepriseUrl = "http://localhost:8000/api/entreprise";
     //Create constructor to get Http instance
     constructor(private http: Http) { }
-    //Fetch all Entreprises
-    getAllEntreprises(): Observable<Entreprise[]> {
-        return this.http.get(this.entrepriseUrl).map(this.extractData).catch(this.handleError);
+    //Fetch all Entreprises by ID
+    getAllEntreprises(entrepriseId: string): Observable<Entreprise[]> {
+        return this.http.get(this.entrepriseUrl+ "/all/" + entrepriseId).map(this.extractData).catch(this.handleError);
     }
     //Fetch Entreprise by id
     getEntrepriseById(entrepriseId: string): Observable<Entreprise> {
@@ -30,6 +31,12 @@ export class EntrepriseService {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
         return this.http.put(this.entrepriseUrl + "/" + entreprise.id, entreprise, options).map(success => success.status).catch(this.handleError);
+    }
+    //Update Entreprise
+    acceptEntreprise(type: AcceptEntreprise): Observable<number> {
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        return this.http.put(this.entrepriseUrl + "/" + type.id, type, options).map(success => success.status).catch(this.handleError);
     }
     //Delete Entreprise	
     deleteEntrepriseById(entrepriseId: string): Observable<number> {

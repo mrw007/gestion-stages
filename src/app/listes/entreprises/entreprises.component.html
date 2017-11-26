@@ -11,6 +11,7 @@
             <th>Téléphone Fax</th>
             <th>Email</th>
             <th>Adresse</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,12 @@
             <td>{{ user.fax_ent }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.adresse_ent }}</td>
+            <td>
+            <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" (click)="refEntreprise(user.id)">
+              <i class="icon icon-basic-ban"></i>
+              <span>Supprimer</span>
+            </button>
+          </td>
           </tr>
         </tbody>
       </table>
