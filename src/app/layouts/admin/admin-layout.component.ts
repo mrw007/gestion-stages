@@ -111,4 +111,9 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     }
     this.width = event.target.innerWidth;
   }
+  logout()
+  {
+    console.log("bye");
+    sessionStorage.clear();
+  }
 }
