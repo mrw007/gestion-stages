@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Entreprise } from 'app/Entities/Entreprise/entreprise';
+import { AcceptEntreprise } from 'app/Entities/Entreprise/AcceptEntreprise';
 
 @Component({
-  selector: 'app-entreprises',
-  templateUrl: './entreprises.component.html',
-  styleUrls: ['./entreprises.component.scss']
+  selector: 'app-entreprises-attente',
+  templateUrl: './entreprises-attente.component.html',
+  styleUrls: ['./entreprises-attente.component.scss']
 })
-export class EntreprisesComponent {
+export class EntreprisesAttenteComponent implements OnInit {
+
 
   constructor(private entrepriseService: EntrepriseService) {
   }
@@ -17,17 +19,34 @@ export class EntreprisesComponent {
   articleIdToUpdate = null;
   processValidation = false;
   entreprises: Entreprise[];
+  entrepriseAcc: AcceptEntreprise;
   id: any;
   ngOnInit(): void {
        this.getAllEntreprises();
   } 
 
   getAllEntreprises() {
-       this.entrepriseService.getAllEntreprises("3").subscribe(
+       this.entrepriseService.getAllEntreprises("4").subscribe(
                data => this.entreprises = data,
                errorCode =>  this.statusCode = errorCode);  
                console.log('getAllEntreprises'); 
   }
+  accEntreprise(id)
+  {
+    this.id = id;
+    this.entrepriseAcc =new AcceptEntreprise( id, 3);
+    console.log("heki entreprise Accept",  this.entrepriseAcc); 
+    this.entrepriseService.acceptEntreprise(this.entrepriseAcc)
+      .subscribe(successCode => {
+        this.statusCode = successCode;
+       
+      },
+      errorCode => this.statusCode = errorCode
+      );
+  
+     console.log("submitEntreprise",  this.statusCode);    
+
+  }  
   refEntreprise(id)
   {
     this.id = id;
@@ -43,4 +62,3 @@ export class EntreprisesComponent {
 
   }  
 }
-

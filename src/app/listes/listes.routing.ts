@@ -5,6 +5,7 @@ import { EnseignantsComponent } from './enseignants/enseignants.component';
 import { EntreprisesComponent } from './entreprises/entreprises.component';
 import { StagesValidesComponent } from './stages-valides/stages-valides.component';
 import { StagesProposesComponent } from './stages-proposes/stages-proposes.component';
+import { EntreprisesAttenteComponent } from 'app/listes/entreprises-attente/entreprises-attente.component';
 
 export const ListesRoutes: Routes = [
   {
@@ -27,7 +28,7 @@ export const ListesRoutes: Routes = [
       path: 'entreprises',
       component: EntreprisesComponent,
       data: {
-        heading: 'Liste Entreprises'
+        heading: 'Liste des Entreprises'
       },
     },
     {
@@ -42,6 +43,13 @@ export const ListesRoutes: Routes = [
       component: StagesProposesComponent,
       data: {
         heading: 'Liste de Stages Proposés'
+      },
+    },
+    {
+      path: 'entreprises_attente',
+      component: EntreprisesAttenteComponent,
+      data: {
+        heading: "Liste des demendes d'inscription d'entreprises"
       },
     }]
   }

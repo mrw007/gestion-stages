@@ -11,7 +11,11 @@ import { StagesProposesComponent } from './stages-proposes/stages-proposes.compo
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
+<<<<<<< HEAD
 import { CompteService } from 'app/Entities/Compte/compte.service';
+=======
+import { EntreprisesAttenteComponent } from './entreprises-attente/entreprises-attente.component';
+>>>>>>> ff2a563a4f16a2a9099dcab14f7dd7d99650a817
 
 
 @NgModule({
@@ -26,6 +30,6 @@ import { CompteService } from 'app/Entities/Compte/compte.service';
     EntrepriseService,
     CompteService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent]
 })
 export class ListesModule { }

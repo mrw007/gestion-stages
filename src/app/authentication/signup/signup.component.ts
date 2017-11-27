@@ -161,11 +161,11 @@ submitEntreprise(post)
     this.pass =post.pass;
     this.comf_pass = post.comf_pass;
     this.nomEntreprise = post.nomEntreprise;
-    this.telEntreprise = post.telEntreprsie;
-    this.faxEntreprise = post.faxEntreprsie;
+    this.telEntreprise = post.telEntreprise;
+    this.faxEntreprise = post.faxEntreprise;
     this.adresseEntreprise = post.adresseEntreprise;
 
-    this.entreprise =new Entreprise( "0", post.email,post.pass,post.cin,post.nom,post.prenom,post.nomEntreprise,post.telEntreprsie,post.faxEntreprise,post.adresseEntreprise);
+    this.entreprise =new Entreprise( "0", post.email,post.pass,post.cin,post.nom,post.prenom,post.nomEntreprise,post.telEntreprise,post.faxEntreprise,post.adresseEntreprise);
     console.log("heki entreprise",  this.entreprise); 
     this.entrepriseService.createEntreprise(this.entreprise)
       .subscribe(successCode => {
