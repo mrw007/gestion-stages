@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { Compte } from 'app/Entities/Compte/compte';
+import { verifCompte } from 'app/Entities/Compte/verifCompte';
 @Injectable()
 export class CompteService {
     //URL for CRUD operations
-    CompteUrl = "http://localhost:8000/api/comptes";
+    CompteUrl = "http://localhost:8000/api/user";
     //Create constructor to get Http instance
     constructor(private http: Http) { }
    
-    getAllComptes(): Observable<Compte[]> {
-        return this.http.get(this.CompteUrl).map(this.extractData).catch(this.handleError);
+    //Create Enseignant
+    verifUser(compte: Compte): Observable<verifCompte> {
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        return this.http.post(this.CompteUrl, compte, options).map(this.extractData).catch(this.handleError);
     }
     
     //Extract Data method
