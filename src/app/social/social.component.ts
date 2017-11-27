@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
+import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 
 @Component({
   selector: 'app-social',
@@ -13,6 +14,9 @@ import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 })
 export class SocialComponent implements OnInit {
 
+  statusCode: number;
+  etudiant:Etudiant;
+  
   ngOnInit(): void {
     this.getSession();
   }
@@ -26,15 +30,7 @@ export class SocialComponent implements OnInit {
   public modif_pass: FormGroup;
   public EtudiantForm: FormGroup;
 
-  etudiant={
-        'cin': '11058679',
-        'nom': 'Kallel', 
-        'prenom': 'Marwen',
-        'tel': '55 679 511', 
-        'email': 'marouankallel@gmail.com', 
-        'cycle_etude': 'Ingénieurie', 
-        'date_ness':'1994-06-13',
-        'niveau_etude': '2eme'};
+  
 //init General Form Values
 post:any;  
 nom: string='';
@@ -53,7 +49,7 @@ niv_etud: string='';
 
   closeResult: string;
   
-  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal) {
+  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal,private etudiantService: EtudiantService) {
     
         this.modif_pass = new FormGroup({
           pass:new FormControl(),
@@ -109,10 +105,17 @@ submitEtudiant(post)
   this.cy_etud = post.cy_etud;
   this.niv_etud = post.niv_etud;
 
- //testing forms do not delete! 
 
- console.log("submitEtudiant", post);  
-
+ this.etudiant =new Etudiant( "20", post.email,post.pass,post.cin,post.nom,post.prenom,post.tel,post.dateNess,post.cy_etud,post.niv_etud,post.spec);
+ this.etudiantService.updateEtudiant(this.etudiant)
+ .subscribe(successCode => {
+  this.statusCode = successCode;
+  },
+errorCode => this.statusCode = errorCode
+);  
+console.log("modification", this.etudiant); 
 }
 }
+
+
 
