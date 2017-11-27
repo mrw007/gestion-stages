@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 export interface Options {
   heading?: string;
   removeFooter?: boolean;
- // mapHeader?: boolean;
+  // mapHeader?: boolean;
 }
 
 @Component({
@@ -22,7 +22,7 @@ export interface Options {
 export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   private _router: Subscription;
-
+  compte: string;
   currentLang = 'en';
   options: Options;
   theme = 'light';
@@ -37,7 +37,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
 
   @ViewChild('sidebar') sidebar;
 
-  constructor (
+  constructor(
     public menuItems: MenuItems,
     private router: Router,
     private route: ActivatedRoute,
@@ -49,6 +49,38 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    let type = sessionStorage.getItem('type');
+    let user = sessionStorage.getItem('user');
+    if (user == null || type == null) {
+      this.router.navigateByUrl('/authentication/signin');
+    }
+    else switch (type) {
+      case "0": {
+        this.compte = 'admin';
+        console.log(this.compte);
+        break;
+      }
+      case "1": {
+        this.compte = 'etudiant';
+        console.log(this.compte);
+        break;
+      }
+      case "2": {
+        this.compte = 'enseignant';
+        console.log(this.compte);
+        break;
+      }
+      case "3": {
+        this.compte = 'entreprise';
+        console.log(this.compte);
+        break;
+      }
+      case "4": {
+        this.compte = 'entreprise_N';
+        console.log(this.compte);
+        break;
+      }
+    }
 
     if (this.isOver()) {
       this._mode = 'over';
@@ -59,9 +91,9 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
       // Scroll to top on view load
       document.querySelector('.main-content').scrollTop = 0;
 
-     /* if (this.isOver() || event.url === '/maps/fullscreen') {
-        this.isOpened = false;
-      }*/
+      /* if (this.isOver() || event.url === '/maps/fullscreen') {
+         this.isOpened = false;
+       }*/
 
       this.route.children.forEach((route: ActivatedRoute) => {
         let activeRoute: ActivatedRoute = route;
@@ -81,8 +113,8 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     this._router.unsubscribe();
   }
 
-  setTitle( newTitle: string) {
-    this.titleService.setTitle( 'Decima - Bootstrap 4 Angular Admin Template | ' + newTitle );
+  setTitle(newTitle: string) {
+    this.titleService.setTitle('Decima - Bootstrap 4 Angular Admin Template | ' + newTitle);
   }
 
   toogleSidebar(): void {
@@ -111,9 +143,7 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
     }
     this.width = event.target.innerWidth;
   }
-  logout()
-  {
-    console.log("bye");
+  logout() {
     sessionStorage.clear();
   }
 }
