@@ -8,15 +8,15 @@
               <figure>
                 <div>
                   <div class="avatar-status bg-red">
-                    <img src="assets/images/marwen.jpg" style=" height:128px;width:auto; max-width:128px;" alt="" class="rounded-circle">
+                    <img src="assets/images/user.jpg" style=" height:128px;width:auto; max-width:128px;" alt="" class="rounded-circle">
                   </div>
                 </div>
               </figure>
             </div>
             <div class="col">
               <h4 class="ma-0">
-                <span class="fw-400">{{etudiant.prenom}}</span>
-                <b>{{etudiant.nom}}</b>
+                <span class="fw-400">{{session.prenom}}</span>
+                <b>{{session.nom}}</b>
               </h4>
               <br>
               <div class="row">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">E-mail</div>
-                  <div>{{etudiant.email}}</div>
+                  <div>{{session.nom}}</div>
                 </div>
               </div>
               <br>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Date de naissance</div>
-                  <div>{{etudiant.date_ness}}</div>
+                  <div>{{session.date_naiss}}</div>
                 </div>
               </div>
               <br>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Numéro CIN</div>
-                  <div>{{etudiant.cin}}</div>
+                  <div>{{session.cin}}</div>
                 </div>
               </div>
               <br>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Numéro de téléphone</div>
-                  <div>{{etudiant.tel}}</div>
+                  <div>{{session.tel}}</div>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Cycle d'étude</div>
-                          <div style="color: black;">Ingénieur</div>
+                          <div style="color: black;">{{session.cycle_etude}}</div>
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Niveau d'étude</div>
-                          <div style="color: black;">2ème</div>
+                          <div style="color: black;">{{session.niveau_etude}}</div>
                         </div>
                       </div>
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Spècilatité</div>
-                          <div style="color: black;">Programmation, Web et Multimédia </div>
+                          <div style="color: black;">{{session.specialite}} </div>
                         </div>
                       </div>
                     </div>
@@ -252,19 +252,19 @@
                   <label for="nom">
                     Votre Nom
                   </label>
-                  <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" value="{{etudiant.nom}}" />
+                  <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" value="{{session.nom}}" />
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="prenom">
                     Votre Prénom
                   </label>
-                  <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" value="{{etudiant.prenom}}"/>
+                  <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" value="{{session.prenom}}"/>
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="cin">
                     Votre CIN
                   </label>
-                  <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" value="{{etudiant.cin}}" />
+                  <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" value="{{session.cin}}" />
                 </fieldset>
                 <fieldset class="form-group">
                   <label for="date_naiss">
@@ -272,7 +272,7 @@
                   </label>
                   <div>
                     <div>
-                      <input class="form-control" type="date" value="{{etudiant.date_ness}}" id="example-date-input" required formControlName="dateNess">
+                      <input class="form-control" type="date" value="{{session.date_naiss}}" id="example-date-input" required formControlName="dateNess">
                     </div>
                   </div>
                 </fieldset>
@@ -284,7 +284,7 @@
                     Votre cycle d'études
                   </label>
                   <div>
-                    <select class="form-control" name="cy_etud" required formControlName="cy_etud" value="{{etudiant.cycle_etude}}">
+                    <select class="form-control" name="cy_etud" required formControlName="cy_etud" value="{{session.cycle_etude}}">
                       <option disabled>---- Licence ----</option>
                       <option value="Licence Appliquée Technologie Multimédia et Web">Licence Appliquée Technologie Multimédia et Web</option>
                       <option value="Licence Fondamentale Informatique et Multimédia">Licence Fondamentale Informatique et Multimédia</option>
@@ -300,7 +300,7 @@
                     Votre Niveau d'études
                   </label>
                   <div>
-                    <select class="form-control" name="niv_etud" required formControlName="niv_etud" value="{{etudiant.niveau_etude}}">
+                    <select class="form-control" name="niv_etud" required formControlName="niv_etud" value="{{session.niveau_etude}}">
                       <option disabled>---- Niveau d'études ----</option>
                       <option value="1">1</option>
                       <option value="2eme">2</option>
@@ -318,7 +318,7 @@
                   </label>
                   <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                     <div class="input-group-addon">@</div>
-                    <input type="email" class="form-control" placeholder="email" required formControlName="email" value="{{etudiant.email}}"/>
+                    <input type="email" class="form-control" placeholder="email" required formControlName="email" value="{{session.email}}"/>
                   </div>
                 </fieldset>
                 <button class="btn btn-primary" type="submit">Modifier</button>

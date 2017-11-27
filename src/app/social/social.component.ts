@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import {FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Etudiant } from 'app/Entities/Etudiant/etudiant';
+
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.scss']
 })
-export class SocialComponent {
-  
+export class SocialComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.getSession();
+  }
+  session:any;
+  getSession() {
+    let userC=JSON.parse(sessionStorage.getItem('user'));
+    console.log(userC);
+    this.session=userC;
+  }
+
   public modif_pass: FormGroup;
   public EtudiantForm: FormGroup;
+
   etudiant={
         'cin': '11058679',
         'nom': 'Kallel', 
