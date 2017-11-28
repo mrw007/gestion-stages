@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Stage } from 'app/Entities/Stage/stage';
+import { StageService } from 'app/Entities/Stage/stage.service';
+
 
 @Component({
   selector: 'app-stages-valides',
@@ -6,20 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stages-valides.component.scss']
 })
 export class StagesValidesComponent {
-  stages = [
-    {
-      'sujet_stage': 'Gestion de stages',
-      'desc_stage': 'Application multiplatforme consiste a ...',
-      'date_deb': '15/11/2017',
-      'date_fin': '15/01/2018',
-      'nom_ent': 'W Corp.'
-    },
-    {
-      'sujet_stage': 'Gestion de location',
-      'desc_stage': 'Application Android',
-      'date_deb': '16/11/2017',
-      'date_fin': '15/02/2018',
-      'nom_ent': 'Telnet'
-    }
-  ];
+  stages :any;
+  statusCode: number;
+  constructor(private stageService: StageService) {
+  }
+  
+  ngOnInit(): void {
+    this.getStagePub();
+} 
+
+getStagePub() {
+    this.stageService.getStagePub().subscribe(
+            data => this.stages = data,
+            errorCode =>  this.statusCode = errorCode);  
+            console.log('stagesPub'); 
+}
 }

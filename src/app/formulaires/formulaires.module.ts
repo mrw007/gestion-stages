@@ -4,11 +4,18 @@ import { ProposerStageComponent } from './proposer-stage/proposer-stage.componen
 import { FormulairesRoutes } from './formulaires.routing';
 import { RouterModule } from '@angular/router';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StageService } from 'app/Entities/Stage/stage.service';
 @NgModule({
   imports: [
     RouterModule.forChild(FormulairesRoutes),
     CommonModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    StageService
   ],
   declarations: [ProposerStageComponent]
 })
