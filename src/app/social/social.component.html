@@ -15,47 +15,58 @@
             </div>
             <div class="col">
               <h4 class="ma-0">
-                <span class="fw-400">{{session.prenom}}</span>
-                <b>{{session.nom}}</b>
+                <span class="fw-400">{{session?.prenom}}</span>
+                <b>{{session?.nom}}</b>
               </h4>
               <br>
-              <div class="row">
+              <div  *ngIf="compte == 'etudiant' || compte == 'enseignant' || compte == 'admin'" class="row">
                 <div class="mr-3">
                   <div class="widget-icon rounded-circle bg-red text-white icon icon-basic-mail"></div>
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">E-mail</div>
-                  <div>{{session.nom}}</div>
+                  <div>{{session?.email}}</div>
                 </div>
               </div>
               <br>
-              <div class="row">
+              <div *ngIf="compte === 'etudiant'" class="row">
                 <div class="mr-3">
                   <div class="widget-icon rounded-circle bg-cyan text-white icon icon-basic-calendar"></div>
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Date de naissance</div>
-                  <div>{{session.date_naiss}}</div>
-                </div>
+                  <div>{{session?.date_naiss}} </div>
+                </div> 
+                <br>
               </div>
-              <br>
+              <div *ngIf="compte === 'enseignant'" class="row">
+                <div class="mr-3">
+                  <div class="widget-icon rounded-circle bg-cyan text-white icon icon-basic-calendar"></div>
+                </div>
+                <div class="mr-3">
+                  <div class="ff-headers text-color">Grade</div>
+                  <div>{{session?.grade}} </div>
+                </div> 
+                <br>
+              </div>
+              <br *ngIf="compte === 'enseignant' || compte ==='etudiant'">
               <div class="row">
                 <div class="mr-3">
                   <div class="widget-icon rounded-circle bg-green text-white icon icon-basic-postcard"></div>
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Numéro CIN</div>
-                  <div>{{session.cin}}</div>
+                  <div>{{session?.cin}}</div>
                 </div>
               </div>
               <br>
-              <div class="row">
+              <div *ngIf="compte == 'etudiant' || compte == 'enseignant' || compte == 'admin'" class="row">
                 <div class="mr-3">
                   <div class="widget-icon rounded-circle bg-pink text-white icon  icon-basic-smartphone"></div>
                 </div>
                 <div class="mr-3">
                   <div class="ff-headers text-color">Numéro de téléphone</div>
-                  <div>{{session.tel}}</div>
+                  <div>{{session?.tel}}</div>
                 </div>
               </div>
             </div>
@@ -66,7 +77,7 @@
     <div class="col-sm-8">
       <div class="card">
         <ngb-tabset class="card-tab">
-          <ngb-tab title="Informations Etudes">
+          <ngb-tab *ngIf="compte === 'etudiant'" title="Informations Etudes">
             <ng-template ngbTabContent>
               <div>
                 <div class="card">
@@ -78,7 +89,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Cycle d'étude</div>
-                          <div style="color: black;">{{session.cycle_etude}}</div>
+                          <div style="color: black;">{{session?.cycle_etude}}</div>
                         </div>
                       </div>
                     </div>
@@ -93,7 +104,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Niveau d'étude</div>
-                          <div style="color: black;">{{session.niveau_etude}}</div>
+                          <div style="color: black;">{{session?.niveau_etude}}</div>
                         </div>
                       </div>
                     </div>
@@ -107,8 +118,8 @@
                           <div class="widget-icon rounded-circle bg-red text-white icon icon-basic-postcard"></div>
                         </div>
                         <div class="mr-3">
-                          <div class="ff-headers text-color">Spècilatité</div>
-                          <div style="color: black;">{{session.specialite}} </div>
+                          <div class="ff-headers text-color">Spécilatité</div>
+                          <div style="color: black;">{{session?.specialite}} </div>
                         </div>
                       </div>
                     </div>
@@ -117,7 +128,7 @@
               </div>
             </ng-template>
           </ngb-tab>
-          <ngb-tab title="Informations Entreprise">
+          <ngb-tab *ngIf="compte =='entreprise' || compte =='entreprise_N'" title="Informations Entreprise">
             <ng-template ngbTabContent>
               <div>
                 <div class="card">
@@ -129,7 +140,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Nom d'entreprise</div>
-                          <div style="color: black;">W Corp.</div>
+                          <div style="color: black;">{{session?.nom_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -144,7 +155,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Téléphone</div>
-                          <div style="color: black;">+216 74 254 613</div>
+                          <div style="color: black;">{{session?.tel_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -159,7 +170,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">E-mail</div>
-                          <div style="color: black;">w.corp@gmail.com</div>
+                          <div style="color: black;">{{session?.email}}</div>
                         </div>
                       </div>
                     </div>
@@ -174,7 +185,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Adresse</div>
-                          <div style="color: black;">Route Tunis Km 6 Sakiet Ezzit, Sfax</div>
+                          <div style="color: black;">{{session?.adresse_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -237,90 +248,110 @@
 </div>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h6 class="modal-title text-uppercase">Informations Compte</h6>
+      <h6 class="modal-title text-uppercase">Modifier Informations Compte</h6>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
         <form [formGroup]="EtudiantForm" (ngSubmit)="submitEtudiant(EtudiantForm.value)">
-            <div class="row">
-              <div class="card  col-md-4"> Informations Générales
-                <br>
-                <br>
-                <fieldset class="form-group">
-                  <label for="nom">
-                    Votre Nom
-                  </label>
-                  <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" value="{{session.nom}}" />
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="prenom">
-                    Votre Prénom
-                  </label>
-                  <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" value="{{session.prenom}}"/>
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="cin">
-                    Votre CIN
-                  </label>
-                  <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" value="{{session.cin}}" />
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="date_naiss">
-                    Votre Date de Naissance
-                  </label>
+          <div class="row">
+            <div class="card  col-md-4"> Informations Générales
+              <br>
+              <br>
+              <fieldset class="form-group">
+                <label for="nom">
+                  Votre Nom
+                </label>
+                <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" [(ngModel)]='session.nom'/>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="prenom">
+                  Votre Prénom
+                </label>
+                <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" [(ngModel)]="session.prenom" />
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="cin">
+                  Votre CIN
+                </label>
+                <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" [(ngModel)]="session.cin"/>
+              </fieldset>
+            <fieldset class="form-group">
+              <label for="nom_ent">
+                Votre Téléphone
+              </label>
+              <input type="tel" class="form-control" placeholder="Téléphone" formControlName="tel" [(ngModel)]="session.tel"/>
+            </fieldset>
+              <fieldset class="form-group">
+                <label for="date_naiss">
+                  Votre Date de Naissance
+                </label>
+                <div>
                   <div>
-                    <div>
-                      <input class="form-control" type="date" value="{{session.date_naiss}}" id="example-date-input" required formControlName="dateNess">
-                    </div>
+                    <input class="form-control" type="date" value="1991-01-01" id="example-date-input" required formControlName="dateNess" [(ngModel)]="session.date_naiss">
                   </div>
-                </fieldset>
-              </div>
-              <div class="col-md-4"> Informations Etudes
-                <br>
-                <fieldset class="form-group">
-                  <label for="cy_etud">
-                    Votre cycle d'études
-                  </label>
-                  <div>
-                    <select class="form-control" name="cy_etud" required formControlName="cy_etud" value="{{session.cycle_etude}}">
-                      <option disabled>---- Licence ----</option>
-                      <option value="Licence Appliquée Technologie Multimédia et Web">Licence Appliquée Technologie Multimédia et Web</option>
-                      <option value="Licence Fondamentale Informatique et Multimédia">Licence Fondamentale Informatique et Multimédia</option>
-                      <option disabled>---- Master ----</option>
-                      <option value="Master de Recherche">Master de Recherche</option>
-                      <option disabled>---- Ingénieur ----</option>
-                      <option value="ingénieur">ingénieur</option>
-                    </select>
-                  </div>
-                </fieldset>
-                <fieldset class="form-group">
-                  <label for="niv_etud">
-                    Votre Niveau d'études
-                  </label>
-                  <div>
-                    <select class="form-control" name="niv_etud" required formControlName="niv_etud" value="{{session.niveau_etude}}">
-                      <option disabled>---- Niveau d'études ----</option>
-                      <option value="1">1</option>
-                      <option value="2eme">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </fieldset>
-              </div>
-              <div class="col-md-4"> Informations Compte
-                <br>
-                <br>
-                <fieldset class="form-group">
-                  <label for="email">
-                    Votre Email
-                  </label>
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon">@</div>
-                    <input type="email" class="form-control" placeholder="email" required formControlName="email" value="{{session.email}}"/>
-                  </div>
-                </fieldset>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4"> Informations Etudes
+              <br>
+              <br>
+              <fieldset class="form-group">
+                <label for="cy_etud">
+                  Votre cycle d'études
+                </label>
+                <div>
+                  <select class="form-control" name="cy_etud" required formControlName="cy_etud" [(ngModel)]="session.cycle_etude">
+                    <option value="Licence" > Licence </option>
+                    <option value="Master"> Master </option>
+                    <option value="Ingénieur"> Ingénieur </option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="spec">
+                  Votre spécialité
+                </label>
+                <div>
+                  <select class="form-control" name="spec" required formControlName="spec" [(ngModel)]="session.specialite">
+                    <option disabled>---- Spécialité ----</option>
+                    <option value="Licence Appliquée Technologie Multimédia et Web">Licence Appliquée Technologie Multimédia et Web</option>
+                    <option value="Licence Fondamentale Informatique et Multimédia">Licence Fondamentale Informatique et Multimédia</option>
+
+                    <option value="Master de Recherche">Master de Recherche</option>
+                    
+                    <option value="ingénieur">ingénieur</option>
+                  </select>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <label for="niv_etud">
+                  Votre Niveau d'études
+                </label>
+                <div>
+                  <select class="form-control" name="niv_etud" required formControlName="niv_etud" [(ngModel)]="session.niveau_etude">
+                    <option disabled>---- Niveau d'études ----</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4"> Informations Compte
+              <br>
+              <br>
+              <fieldset class="form-group">
+                <label for="email">
+                  Votre Email
+                </label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon">@</div>
+                  <input type="email" class="form-control" placeholder="email" required formControlName="email" [(ngModel)]="session.email"/>
+                </div>
+              </fieldset>
+              <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="session.id"/>              
                 <button class="btn btn-primary" type="submit">Modifier</button>
               </div>
             </div>

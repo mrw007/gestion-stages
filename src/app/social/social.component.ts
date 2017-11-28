@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { FormsModule } from '@angular/forms';
@@ -7,12 +7,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 
+declare var $:any;
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.scss']
 })
 export class SocialComponent implements OnInit {
+  compte: string;
   user: string;
   type: string;
 
@@ -23,6 +25,34 @@ export class SocialComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSession();
+    this.type = sessionStorage.getItem('type');
+    switch (this.type) {
+      case "0": {
+        this.compte = 'admin';
+        console.log(this.compte);
+        break;
+      }
+      case "1": {
+        this.compte = 'etudiant';
+        console.log(this.compte);
+        break;
+      }
+      case "2": {
+        this.compte = 'enseignant';
+        console.log(this.compte);
+        break;
+      }
+      case "3": {
+        this.compte = 'entreprise';
+        console.log(this.compte);
+        break;
+      }
+      case "4": {
+        this.compte = 'entreprise_N';
+        console.log(this.compte);
+        break;
+      }
+  }
   }
   getSession() {
     let userC = JSON.parse(sessionStorage.getItem('user'));
@@ -42,6 +72,9 @@ export class SocialComponent implements OnInit {
   email: string = '';
   pass: string = '';
   comf_pass: string = '';
+  tel:string ='';
+  spec:string ='';
+  id:string='';
 
   //init Etudiant Form Values
 
@@ -49,7 +82,6 @@ export class SocialComponent implements OnInit {
   numInscrit: string = '';
   cy_etud: string = '';
   niv_etud: string = '';
-
   closeResult: string;
 
   constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService) {
@@ -59,6 +91,7 @@ export class SocialComponent implements OnInit {
       comf_pass: new FormControl()
     });
     this.EtudiantForm = new FormGroup({
+      id: new FormControl(),
       nom: new FormControl(),
       prenom: new FormControl(),
       cin: new FormControl(),
@@ -68,6 +101,8 @@ export class SocialComponent implements OnInit {
       dateNess: new FormControl(),
       numInscrit: new FormControl(),
       cy_etud: new FormControl(),
+      spec: new FormControl(),
+      tel: new FormControl(),
       niv_etud: new FormControl(),
     });
   }
@@ -77,7 +112,7 @@ export class SocialComponent implements OnInit {
     //test
     console.log("modif pass", post);
   }
-  open(content) {
+  open(content) {    
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -94,12 +129,13 @@ export class SocialComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
   submitEtudiant(post) {
     this.nom = post.nom;
     this.prenom = post.prenom;
     this.cin = post.cin;
     this.email = post.email;
-    this.pass = post.pass;
+    this.pass = this.session.password;
     this.comf_pass = post.comf_pass;
     this.dateNess = post.dateNess;
     this.numInscrit = post.numInscrit;
@@ -107,10 +143,17 @@ export class SocialComponent implements OnInit {
     this.niv_etud = post.niv_etud;
 
 
-    this.etudiant = new Etudiant("20", post.email, post.pass, post.cin, post.nom, post.prenom, post.tel, post.dateNess, post.cy_etud, post.niv_etud, post.spec);
+    this.etudiant = new Etudiant(post.id, post.email, this.pass, post.cin, post.nom, post.prenom, post.tel, post.dateNess, post.cy_etud, post.niv_etud, post.spec);
     this.etudiantService.updateEtudiant(this.etudiant)
       .subscribe(successCode => {
         this.statusCode = successCode;
+        sessionStorage.setItem('user', JSON.stringify(this.etudiant));
+        this.getSession();
+        //location.reload();
+        alert("Vous changement ont étés enregistrés avec succès");
+        $('#content').modal('hide');
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/"));
       },
       errorCode => this.statusCode = errorCode
       );
