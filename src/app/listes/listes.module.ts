@@ -13,6 +13,8 @@ import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 import { CompteService } from 'app/Entities/Compte/compte.service';
 import { EntreprisesAttenteComponent } from './entreprises-attente/entreprises-attente.component';
+import { StageService } from 'app/Entities/Stage/stage.service';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { EntreprisesAttenteComponent } from './entreprises-attente/entreprises-a
     EtudiantService,
     EnseignantService,
     EntrepriseService,
-    CompteService
+    CompteService,
+    StageService
   ],
   declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent]
 })
