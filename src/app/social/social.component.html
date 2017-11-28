@@ -140,7 +140,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Nom d'entreprise</div>
-                          <div style="color: black;">{{session?.nom_ent}}</div>
+                          <div style="color: black;">{{session2?.nom_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -155,7 +155,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Téléphone</div>
-                          <div style="color: black;">{{session?.tel_ent}}</div>
+                          <div style="color: black;">{{session2?.tel_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -170,7 +170,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">E-mail</div>
-                          <div style="color: black;">{{session?.email}}</div>
+                          <div style="color: black;">{{session2?.email}}</div>
                         </div>
                       </div>
                     </div>
@@ -185,7 +185,7 @@
                         </div>
                         <div class="mr-3">
                           <div class="ff-headers text-color">Adresse</div>
-                          <div style="color: black;">{{session?.adresse_ent}}</div>
+                          <div style="color: black;">{{session2?.adresse_ent}}</div>
                         </div>
                       </div>
                     </div>
@@ -254,7 +254,7 @@
       </button>
     </div>
     <div class="modal-body">
-        <form [formGroup]="EtudiantForm" (ngSubmit)="submitEtudiant(EtudiantForm.value)">
+        <form *ngIf="compte==='etudiant'" [formGroup]="EtudiantForm" (ngSubmit)="submitEtudiant(EtudiantForm.value);d('Cross click')">
           <div class="row">
             <div class="card  col-md-4"> Informations Générales
               <br>
@@ -263,25 +263,25 @@
                 <label for="nom">
                   Votre Nom
                 </label>
-                <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" [(ngModel)]='session.nom'/>
+                <input type="text" class="form-control" placeholder="Nom" required formControlName="nom" [(ngModel)]='session2.nom'/>
               </fieldset>
               <fieldset class="form-group">
                 <label for="prenom">
                   Votre Prénom
                 </label>
-                <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" [(ngModel)]="session.prenom" />
+                <input type="text" class="form-control" placeholder="Prénom" required formControlName="prenom" [(ngModel)]="session2.prenom" />
               </fieldset>
               <fieldset class="form-group">
                 <label for="cin">
                   Votre CIN
                 </label>
-                <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" [(ngModel)]="session.cin"/>
+                <input type="text" class="form-control" placeholder="CIN" required formControlName="cin" [(ngModel)]="session2.cin"/>
               </fieldset>
             <fieldset class="form-group">
               <label for="nom_ent">
                 Votre Téléphone
               </label>
-              <input type="tel" class="form-control" placeholder="Téléphone" formControlName="tel" [(ngModel)]="session.tel"/>
+              <input type="tel" class="form-control" placeholder="Téléphone" formControlName="tel" [(ngModel)]="session2.tel"/>
             </fieldset>
               <fieldset class="form-group">
                 <label for="date_naiss">
@@ -289,7 +289,7 @@
                 </label>
                 <div>
                   <div>
-                    <input class="form-control" type="date" value="1991-01-01" id="example-date-input" required formControlName="dateNess" [(ngModel)]="session.date_naiss">
+                    <input class="form-control" type="date" value="1991-01-01" id="example-date-input" required formControlName="dateNess" [(ngModel)]="session2.date_naiss">
                   </div>
                 </div>
               </fieldset>
@@ -302,7 +302,7 @@
                   Votre cycle d'études
                 </label>
                 <div>
-                  <select class="form-control" name="cy_etud" required formControlName="cy_etud" [(ngModel)]="session.cycle_etude">
+                  <select class="form-control" name="cy_etud" required formControlName="cy_etud" [(ngModel)]="session2.cycle_etude">
                     <option value="Licence" > Licence </option>
                     <option value="Master"> Master </option>
                     <option value="Ingénieur"> Ingénieur </option>
@@ -314,7 +314,7 @@
                   Votre spécialité
                 </label>
                 <div>
-                  <select class="form-control" name="spec" required formControlName="spec" [(ngModel)]="session.specialite">
+                  <select class="form-control" name="spec" required formControlName="spec" [(ngModel)]="session2.specialite">
                     <option disabled>---- Spécialité ----</option>
                     <option value="Licence Appliquée Technologie Multimédia et Web">Licence Appliquée Technologie Multimédia et Web</option>
                     <option value="Licence Fondamentale Informatique et Multimédia">Licence Fondamentale Informatique et Multimédia</option>
@@ -330,7 +330,7 @@
                   Votre Niveau d'études
                 </label>
                 <div>
-                  <select class="form-control" name="niv_etud" required formControlName="niv_etud" [(ngModel)]="session.niveau_etude">
+                  <select class="form-control" name="niv_etud" required formControlName="niv_etud" [(ngModel)]="session2.niveau_etude">
                     <option disabled>---- Niveau d'études ----</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -348,13 +348,144 @@
                 </label>
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                   <div class="input-group-addon">@</div>
-                  <input type="email" class="form-control" placeholder="email" required formControlName="email" [(ngModel)]="session.email"/>
+                  <input type="email" class="form-control" placeholder="email" required formControlName="email" [(ngModel)]="session2.email"/>
                 </div>
               </fieldset>
-              <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="session.id"/>              
+              <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="session2.id"/>              
                 <button class="btn btn-primary" type="submit">Modifier</button>
               </div>
             </div>
           </form>
-    </div>
+    
+    <form *ngIf="compte==='enseignant'" [formGroup]="EnseignantForm" (ngSubmit)="submitEnseignant(EnseignantForm.value);d('Cross click')">
+      <div class="row">
+        <div class="card  col-md-6"> Informations Générales
+          <br>
+          <br>
+          <fieldset class="form-group">
+            <label for="nom">
+              Votre Nom
+            </label>
+            <input type="text" class="form-control" placeholder="Nom" formControlName="nom" [(ngModel)]='session2.nom'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="prenom">
+              Votre Prénom
+            </label>
+            <input type="text" class="form-control" placeholder="Prénom" formControlName="prenom" [(ngModel)]='session2.prenom'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="cin">
+              Votre CIN
+            </label>
+            <input type="text" class="form-control" placeholder="CIN" formControlName="cin" [(ngModel)]='session2.cin' />
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="nom_ent">
+              Votre Téléphone
+            </label>
+            <input type="tel" class="form-control" placeholder="Téléphone" formControlName="tel" [(ngModel)]='session2.tel'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="grade">
+              Votre Grade
+            </label>
+            <div>
+              <select class="form-control" name="grade" formControlName="grade" [(ngModel)]='session2.grade'>
+                <option value="1">7keya</option>
+                <option value="2">7keya2</option>
+              </select>
+            </div>
+          </fieldset>
+            
+        </div>
+        <div class="col-md-6"> Informations Compte
+          <br>
+          <br>
+          <fieldset class="form-group">
+            <label for="email">
+              Votre Email
+            </label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon">@</div>
+              <input type="email" class="form-control" placeholder="email" formControlName="email" [(ngModel)]='session2.email'/>
+            </div>
+          </fieldset>
+          <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="session2.id"/>   
+          <button class="btn btn-primary" type="submit">Modifier</button>
+        </div>
+      </div>
+    </form>
+    <form *ngIf="compte==='entreprise' || compte==='entreprise_N'" [formGroup]="EntrepriseForm" (ngSubmit)="submitEntreprise(EntrepriseForm.value);d('Cross click')">
+      <div class="row">
+        <div class="card  col-md-4"> Informations Générales
+          <br>
+          <br>
+          <fieldset class="form-group">
+            <label for="nom">
+              Votre Nom
+            </label>
+            <input type="text" class="form-control" placeholder="Nom" formControlName="nom" [(ngModel)]='session2.nom'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="prenom">
+              Votre Prénom
+            </label>
+            <input type="text" class="form-control" placeholder="Prénom" formControlName="prenom" [(ngModel)]='session2.prenom'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="cin">
+              Votre CIN
+            </label>
+            <input type="number" class="form-control" placeholder="CIN" formControlName="cin" [(ngModel)]='session2.cin'/>
+          </fieldset>
+        </div>
+        <div class="col-md-4"> Informations Entreprise
+          <br>
+          <br>
+          <fieldset class="form-group">
+            <label for="nom_ent">
+              Nom d'entreprise
+            </label>
+            <input type="text" class="form-control" placeholder="Nom Entreprise" formControlName="nomEntreprise" [(ngModel)]='session2.nom_ent'/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="nom_ent">
+              Téléphone d'entreprise
+            </label>
+            <input type="tel" class="form-control" placeholder="Téléphone Entreprise" formControlName="telEntreprise" [(ngModel)]='session2.tel_ent' />
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="nom_ent">
+              Fax d'entreprise
+            </label>
+            <input type="tel" class="form-control" placeholder="Fax Entreprise" formControlName="faxEntreprise" [(ngModel)]='session2.fax_ent' />
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="nom_ent">
+              Adresse d'entreprise
+            </label>
+            <div>
+              <textarea class="form-control" formControlName="adresseEntreprise" rows="3" [(ngModel)]='session2.adresse_ent'></textarea>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-md-4"> Informations Compte
+          <br>
+          <br>
+          <fieldset class="form-group">
+            <label for="email">
+              Votre Email
+            </label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon">@</div>
+              <input type="email" class="form-control" placeholder="email" formControlName="email" [(ngModel)]='session2.email' />
+            </div>
+          </fieldset>
+          <input type="hidden" class="form-control" formControlName="id" [(ngModel)]="session2.id"/>  
+              <button class="btn btn-primary" type="submit">Modifier</button>
+        </div>
+      </div>
+    </form>
+  </div>
   </ng-template>

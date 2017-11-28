@@ -6,8 +6,11 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
-
-declare var $:any;
+import { Entreprise } from 'app/Entities/Entreprise/entreprise';
+import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
+import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
+import { Enseignant } from 'app/Entities/Enseignant/enseignant';
+declare var jquery:any; declare var $ :any;
 @Component({
   selector: 'app-social',
   templateUrl: './social.component.html',
@@ -21,6 +24,7 @@ export class SocialComponent implements OnInit {
   statusCode: number;
   etudiant: Etudiant;
   session:any;
+  session2:any;
   
 
   ngOnInit(): void {
@@ -58,10 +62,15 @@ export class SocialComponent implements OnInit {
     let userC = JSON.parse(sessionStorage.getItem('user'));
     console.log(userC);
     this.session = userC;
+    this.session2 = userC;
   }
 
   public modif_pass: FormGroup;
   public EtudiantForm: FormGroup;
+  public EnseignantForm: FormGroup;
+  public EntrepriseForm: FormGroup;
+  enseignant:any;
+  entreprise:any;
 
 
   //init General Form Values
@@ -84,7 +93,18 @@ export class SocialComponent implements OnInit {
   niv_etud: string = '';
   closeResult: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService) {
+  //init Enseignant Form Values
+
+grade: string='';
+
+//init Entreprise Form Values
+
+nomEntreprise: string='';
+telEntreprise: string='';
+faxEntreprise: string='';
+adresseEntreprise: string='';
+
+  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService) {
 
     this.modif_pass = new FormGroup({
       pass: new FormControl(),
@@ -105,6 +125,32 @@ export class SocialComponent implements OnInit {
       tel: new FormControl(),
       niv_etud: new FormControl(),
     });
+    this.EnseignantForm = new FormGroup({
+      id: new FormControl(),
+      nom: new FormControl(),
+      prenom: new FormControl(),
+      cin: new FormControl(),
+      email: new FormControl(),
+      pass:new FormControl(),
+      comf_pass: new FormControl(),
+      tel:  new FormControl(),
+      grade: new FormControl()
+      });
+  
+      this.EntrepriseForm = new FormGroup({
+        id: new FormControl(),
+        nom: new FormControl(),
+        prenom: new FormControl(),
+        cin: new FormControl(),
+        email: new FormControl(),
+        pass:new FormControl(),
+        comf_pass: new FormControl(),
+        nomEntreprise: new FormControl(),
+        telEntreprise: new FormControl(),
+        faxEntreprise: new FormControl(),
+        adresseEntreprise: new FormControl()
+      });
+  
   }
   onModif_pass(post) {
     this.pass = post.pass;
@@ -142,7 +188,6 @@ export class SocialComponent implements OnInit {
     this.cy_etud = post.cy_etud;
     this.niv_etud = post.niv_etud;
 
-
     this.etudiant = new Etudiant(post.id, post.email, this.pass, post.cin, post.nom, post.prenom, post.tel, post.dateNess, post.cy_etud, post.niv_etud, post.spec);
     this.etudiantService.updateEtudiant(this.etudiant)
       .subscribe(successCode => {
@@ -151,7 +196,7 @@ export class SocialComponent implements OnInit {
         this.getSession();
         //location.reload();
         alert("Vous changement ont étés enregistrés avec succès");
-        $('#content').modal('hide');
+      
         this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
         this.router.navigateByUrl("/"));
       },
@@ -159,6 +204,71 @@ export class SocialComponent implements OnInit {
       );
     console.log("modification", this.etudiant);
   }
+
+  submitEntreprise(post)
+  {
+
+    this.nom = post.nom;
+    this.prenom = post.prenom;
+    this.cin = post.cin;
+    this.email = post.email;
+    this.pass =this.session.password;
+    this.comf_pass = post.comf_pass;
+    this.nomEntreprise = post.nomEntreprise;
+    this.telEntreprise = post.telEntreprise;
+    this.faxEntreprise = post.faxEntreprise;
+    this.adresseEntreprise = post.adresseEntreprise;
+
+    this.entreprise =new Entreprise( post.id, post.email,this.pass,post.cin,post.nom,post.prenom,post.nomEntreprise,post.telEntreprise,post.faxEntreprise,post.adresseEntreprise);
+    console.log("heki entreprise",  this.entreprise); 
+    this.entrepriseService.updateEntreprise(this.entreprise)
+      .subscribe(successCode => {
+        this.statusCode = successCode;
+        sessionStorage.setItem('user', JSON.stringify(this.entreprise));
+        this.getSession();
+        //location.reload();
+        alert("Vous changement ont étés enregistrés avec succès");
+      
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/"));
+       
+      },
+      errorCode => this.statusCode = errorCode
+      );
+  
+     console.log("submitEntreprise",  this.statusCode);    
+
+  }  
+submitEnseignant(post)
+  {
+
+    this.nom = post.nom;
+    this.prenom = post.prenom;
+    this.cin = post.cin;
+    this.email = post.email;
+    this.pass =this.session.password;
+    this.comf_pass = post.comf_pass;
+    this.tel = post.tel;
+    this.grade = post.grade;
+
+    this.enseignant = new Enseignant (post.id, post.email,this.pass,post.cin,post.nom,post.prenom,post.tel,post.grade);
+    console.log("heka enseignant", this.enseignant); 
+    this.enseignantService.updateEnseignant(this.enseignant)
+      .subscribe(successCode => {
+        this.statusCode = successCode;
+        sessionStorage.setItem('user', JSON.stringify(this.enseignant));
+        this.getSession();
+        //location.reload();
+        alert("Vous changement ont étés enregistrés avec succès");
+      
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/"));
+      },
+      errorCode => this.statusCode = errorCode
+      );
+  
+     console.log("submitEnseignant",  this.statusCode);  
+  }  
 }
 
 

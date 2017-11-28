@@ -29,7 +29,7 @@ export class EnseignantService {
     updateEnseignant(enseignant: Enseignant): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.put(this.EnseignantUrl + "/" + enseignant.id, Enseignant, options).map(success => success.status).catch(this.handleError);
+        return this.http.put(this.EnseignantUrl + "/" + enseignant.id, enseignant, options).map(success => success.status).catch(this.handleError);
     }
     //Delete Enseignant	
     deleteEnseignantById(enseignantId: string): Observable<number> {
