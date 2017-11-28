@@ -14,6 +14,7 @@ import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 import { CompteService } from 'app/Entities/Compte/compte.service';
 import { EntreprisesAttenteComponent } from './entreprises-attente/entreprises-attente.component';
 import { StageService } from 'app/Entities/Stage/stage.service';
+import { StagesProposesEntComponent } from './stages-proposes-ent/stages-proposes-ent.component';
 
 
 
@@ -30,6 +31,6 @@ import { StageService } from 'app/Entities/Stage/stage.service';
     CompteService,
     StageService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent]
 })
 export class ListesModule { }

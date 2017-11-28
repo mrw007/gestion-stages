@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StageService } from 'app/Entities/Stage/stage.service';
+import { PublierStageComponent } from './publier-stage/publier-stage.component';
 @NgModule({
   imports: [
     RouterModule.forChild(FormulairesRoutes),
@@ -17,6 +18,6 @@ import { StageService } from 'app/Entities/Stage/stage.service';
   providers: [
     StageService
   ],
-  declarations: [ProposerStageComponent]
+  declarations: [ProposerStageComponent, PublierStageComponent]
 })
 export class FormulairesModule { }

@@ -46,6 +46,13 @@ export const ListesRoutes: Routes = [
       },
     },
     {
+      path: 'stages_proposes_ent',
+      component: StagesProposesComponent,
+      data: {
+        heading: 'Liste de Stages Proposés par vous'
+      },
+    },
+    {
       path: 'entreprises_attente',
       component: EntreprisesAttenteComponent,
       data: {

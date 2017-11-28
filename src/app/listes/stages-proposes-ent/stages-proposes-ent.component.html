@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header"></div>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Sujet</th>
+          <th>Description</th>
+          <th>Date Début</th>
+          <th>Date Fin</th>
+          <th>Entreprise</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stages of stages">
+          <td>{{ stages.sujet_stage }}</td>
+          <td>{{ stages.desc_stage }}</td>
+          <td>{{ stages.date_deb }}</td>
+          <td>{{ stages.date_fin }}</td>
+          <td>{{ stages.nom_ent }}</td>
+          <td>
+              <button type="button" class="btn btn-success btn-icon mr-1 mb-1">
+                  <i class="icon icon-arrows-check"></i>
+                  <span>Accepter</span>
+                </button>
+            <span>
+            <button type="button" class="btn btn-danger btn-icon mr-1 mb-1">
+              <i class="icon icon-basic-ban"></i>
+              <span>Refuser</span>
+            </button>
+          </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
