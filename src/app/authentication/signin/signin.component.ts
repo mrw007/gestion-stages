@@ -66,6 +66,7 @@ export class SigninComponent implements OnInit {
         this.v = data;
         if (this.v.type == 0) {
           //ToDo Admin Profile in dataBase (Manual insert)
+          this.getEtudiantById();
         }
         else if (this.v.type == 1) {
           this.getEtudiantById();
