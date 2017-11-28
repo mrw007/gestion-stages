@@ -24,46 +24,150 @@
       </ul>
     </nav>
     <!-- main navigation -->
-    <nav class="menu">
-      <ul class="navigation" appAccordion>
-        <li class="navigation-item" appAccordionLink>
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/']">
-            <i class="icon icon-basic-home"></i>
-            <span>Acceuil</span>
-            <span class="mr-auto"></span>
-          </a>
-        </li>
-        <li class="navigation-item" appAccordionLink>
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/stages_valides']">
-            <i class="icon icon-basic-todo-pen"></i>
-            <span>Offres de Stages</span>
-            <span class="mr-auto"></span>
-          </a>
-        </li>
-        <li class="navigation-item" appAccordionLink>
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/offres_de_PFE']">
-            <i class="icon icon-basic-todolist-pencil"></i>
-            <span>Offres de PFE</span>
-            <span class="mr-auto"></span>
-          </a>
-        </li>
-        <li class="navigation-item" appAccordionLink>
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
-            <i class="icon icon-basic-message-txt"></i>
-            <span>Contact</span>
-            <span class="mr-auto"></span>
-          </a>
-        </li>
-        <li class="navigation-item" appAccordionLink>
-          <a class="navigation-link" appAccordionToggle [routerLink]="['/bibliotheque']">
-            <i class="icon icon-basic-postcard"></i>
-            <span>Bibliotheque</span>
-            <span class="mr-auto"></span>
-          </a>
-        </li>
-        <li class="navigation-item"><hr class="mt-0 mb-0" /></li>
-      </ul>
-    </nav>
+    <ng-template *ngIf="compte=='enseignant';then enseignant; "></ng-template>
+    <ng-template *ngIf="compte=='etudiant';then etudiant; "></ng-template>
+    <ng-template *ngIf="compte=='entreprise';then entreprise;"></ng-template>
+    <ng-template *ngIf="compte=='entreprise_N';then entreprise_N;"></ng-template>
+    <ng-template *ngIf="compte=='admin';then admin;"></ng-template>
+    <!--menu Admin-->
+    <ng-template #admin>
+        <nav class="menu">
+            <ul class="navigation" appAccordion>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/']">
+                  <i class="icon icon-basic-home"></i>
+                  <span>Acceuil</span>
+                  <span class="mr-auto"></span>    
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle href="javascript:;">
+                  <i class="icon icon-basic-todo-pen"></i>
+                  <span>Gestions des Profils</span>
+                  <span class="mr-auto"></span>
+                </a>
+                <ul class="navigation-submenu">
+                    <li class="navigation-item">
+                      <a [routerLink]="['/listes/etudiants']" class="navigation-link relative" routerLinkActive="open">Liste des Etudiants</a>
+                      <a [routerLink]="['/listes/enseignants']" class="navigation-link relative" routerLinkActive="open">Liste des Enseignants</a>
+                      <a [routerLink]="['/listes/entreprises']" class="navigation-link relative" routerLinkActive="open">Liste des Entreprises</a>
+                      <a [routerLink]="['/listes/entreprises_attente']" class="navigation-link relative" routerLinkActive="open">Liste des demandes  <br> des Entreprises</a>
+                    </li>
+                  </ul>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle href="javascript:;">
+                  <i class="icon icon-basic-todo-pen"></i>
+                  <span>Gestions des Stages</span>
+                  <span class="mr-auto"></span>
+                </a>
+                <ul class="navigation-submenu">
+                    <li class="navigation-item">
+                      <a [routerLink]="['/formulaires/publier_stage']" class="navigation-link relative" routerLinkActive="open">Publier un Stage</a>
+                      <a [routerLink]="['/listes/stages_proposes']" class="navigation-link relative" routerLinkActive="open">Liste des Stages proposés</a>
+                      <a [routerLink]="['/listes/stages_valides']" class="navigation-link relative" routerLinkActive="open">Liste des Stages publiés</a>
+                    </li>
+                  </ul>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
+                  <i class="icon icon-basic-message-txt"></i>
+                  <span>Contact</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/bibliotheque']">
+                  <i class="icon icon-basic-postcard"></i>
+                  <span>Bibliotheque</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item"><hr class="mt-0 mb-0" /></li>
+            </ul>
+          </nav>
+    </ng-template>
+
+    <!--menu Etudiant-->
+    <ng-template #etudiant>
+        <nav class="menu">
+            <ul class="navigation" appAccordion>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/']">
+                  <i class="icon icon-basic-home"></i>
+                  <span>Acceuil</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/stages_valides']">
+                  <i class="icon icon-basic-todo-pen"></i>
+                  <span>Offres de Stages</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/offres_de_PFE']">
+                  <i class="icon icon-basic-todolist-pencil"></i>
+                  <span>Offres de PFE</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
+                  <i class="icon icon-basic-message-txt"></i>
+                  <span>Contact</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item" appAccordionLink>
+                <a class="navigation-link" appAccordionToggle [routerLink]="['/bibliotheque']">
+                  <i class="icon icon-basic-postcard"></i>
+                  <span>Bibliotheque</span>
+                  <span class="mr-auto"></span>
+                </a>
+              </li>
+              <li class="navigation-item"><hr class="mt-0 mb-0" /></li>
+            </ul>
+          </nav>
+    </ng-template>
+
+    <!--menu Entreprise-->
+    <ng-template #entreprise>
+      <nav class="menu">
+          <ul class="navigation" appAccordion>
+            <li class="navigation-item" appAccordionLink>
+              <a class="navigation-link" appAccordionToggle [routerLink]="['/']">
+                <i class="icon icon-basic-home"></i>
+                <span>Acceuil</span>
+                <span class="mr-auto"></span>    
+              </a>
+            </li>
+            <li class="navigation-item" appAccordionLink>
+              <a class="navigation-link" appAccordionToggle href="javascript:;">
+                <i class="icon icon-basic-todo-pen"></i>
+                <span>Gestions des Stages</span>
+                <span class="mr-auto"></span>
+              </a>
+              <ul class="navigation-submenu">
+                  <li class="navigation-item">
+                    <a [routerLink]="['/formulaires/proposer_stage']" class="navigation-link relative" routerLinkActive="open">Proposer un Stage</a>
+                    <a [routerLink]="['/listes/stages_proposes_ent']" class="navigation-link relative" routerLinkActive="open">Liste des Stages proposés</a>
+                    <a [routerLink]="['/listes/stages_valides']" class="navigation-link relative" routerLinkActive="open">Liste des Stages publiés</a>
+                  </li>
+                </ul>
+            </li>
+            <li class="navigation-item" appAccordionLink>
+              <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
+                <i class="icon icon-basic-message-txt"></i>
+                <span>Contact</span>
+                <span class="mr-auto"></span>
+              </a>
+            </li>
+            <li class="navigation-item"><hr class="mt-0 mb-0" /></li>
+          </ul>
+        </nav>
+  </ng-template>
     <!-- /main navigation -->
   </ng-sidebar>
 
@@ -83,7 +187,8 @@
       <ul class="navbar-nav">
         <li class="nav-item" ngbDropdown>
           <a href="javascript:;" class="nav-link" ngbDropdownToggle>
-            <img src="assets/images/avatar.jpg" class="navbar-avatar rounded-circle" alt="user" title="user">
+             Bienvenue, {{session.prenom}} {{session.nom}}!
+            <img src="assets/images/user.jpg" class="navbar-avatar rounded-circle" alt="user" title="user">
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="javascript:;">

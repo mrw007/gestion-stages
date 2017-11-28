@@ -34,7 +34,10 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   _mode = this.mode;
   _autoCollapseWidth = 991;
   width = window.innerWidth;
-
+  session:any;
+  type: string;
+  ui: number = 0;
+  
   @ViewChild('sidebar') sidebar;
 
   constructor(
@@ -49,37 +52,35 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    let type = sessionStorage.getItem('type');
-    let user = sessionStorage.getItem('user');
-    if (user == null || type == null) {
-      this.router.navigateByUrl('/authentication/signin');
-    }
-    else switch (type) {
-      case "0": {
-        this.compte = 'admin';
-        console.log(this.compte);
-        break;
-      }
-      case "1": {
-        this.compte = 'etudiant';
-        console.log(this.compte);
-        break;
-      }
-      case "2": {
-        this.compte = 'enseignant';
-        console.log(this.compte);
-        break;
-      }
-      case "3": {
-        this.compte = 'entreprise';
-        console.log(this.compte);
-        break;
-      }
-      case "4": {
-        this.compte = 'entreprise_N';
-        console.log(this.compte);
-        break;
-      }
+    this.type = sessionStorage.getItem('type');
+      this.ui = 1;
+      this.getSession();
+      switch (this.type) {
+        case "0": {
+          this.compte = 'admin';
+          console.log(this.compte);
+          break;
+        }
+        case "1": {
+          this.compte = 'etudiant';
+          console.log(this.compte);
+          break;
+        }
+        case "2": {
+          this.compte = 'enseignant';
+          console.log(this.compte);
+          break;
+        }
+        case "3": {
+          this.compte = 'entreprise';
+          console.log(this.compte);
+          break;
+        }
+        case "4": {
+          this.compte = 'entreprise_N';
+          console.log(this.compte);
+          break;
+        }
     }
 
     if (this.isOver()) {
@@ -145,5 +146,11 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   }
   logout() {
     sessionStorage.clear();
+  }
+
+  getSession() {
+    let userC = JSON.parse(sessionStorage.getItem('user'));
+    console.log(userC);
+    this.session = userC;
   }
 }
