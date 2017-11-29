@@ -64,10 +64,10 @@ export class StageService {
         return this.http.put(this.stagetUrl + "Demande/" + stage.id, stage, options).map(success => success.status).catch(this.handleError);
     }
     
-    deleteStage(stage: Stage): Observable<number> {
+    deleteStage(stageId: number): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.delete(this.stagetUrl + "/" + stage.id).map(success => success.status).catch(this.handleError);
+        return this.http.delete(this.stagetUrl + "/" + stageId).map(success => success.status).catch(this.handleError);
     }
     //Extract Data method
     private extractData(res: Response) {
