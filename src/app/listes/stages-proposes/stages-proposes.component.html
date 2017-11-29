@@ -13,19 +13,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let stages of stages">
-            <td>{{ stages.sujet_stage }}</td>
-            <td>{{ stages.desc_stage }}</td>
-            <td>{{ stages.date_deb }}</td>
-            <td>{{ stages.date_fin }}</td>
-            <td>{{ stages.nom_ent }}</td>
+          <tr *ngFor="let stage of stages">
+            <td>{{ stage.sujet_stage }}</td>
+            <td>{{ stage.desc_stage }}</td>
+            <td>{{ stage.date_deb }}</td>
+            <td>{{ stage.date_fin }}</td>
+            <td>{{ stage.nom_ent }}</td>
             <td>
-                <button type="button" class="btn btn-success btn-icon mr-1 mb-1">
+                <button type="button" class="btn btn-success btn-icon mr-1 mb-1" (click)="accepter(stage)">
                     <i class="icon icon-arrows-check"></i>
                     <span>Accepter</span>
                   </button>
               <span>
-              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1">
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" >
                 <i class="icon icon-basic-ban"></i>
                 <span>Refuser</span>
               </button>

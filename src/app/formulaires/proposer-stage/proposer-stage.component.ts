@@ -13,6 +13,8 @@ import { Stage } from 'app/Entities/Stage/stage';
   styleUrls: ['./proposer-stage.component.scss']
 })
 export class ProposerStageComponent implements OnInit {
+  session: any;
+  prop: any;
   errorMessage: String;
   statusCode: number;
 
@@ -35,7 +37,15 @@ export class ProposerStageComponent implements OnInit {
     });
   }
 
+  getSession() {
+    let userC = JSON.parse(sessionStorage.getItem('user'));
+    console.log(userC);
+    this.session = userC;
+    
+  }
   ngOnInit() {
+this.getSession();
+  
   }
   onSubmit() {
     this.router.navigate( ['/'] );
@@ -47,11 +57,16 @@ export class ProposerStageComponent implements OnInit {
     this.desc_stage = post.desc_stage;
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
-    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,3);
+    this.prop = this.session.id;
+    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop);
     this.stageService.propStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
+    alert("Votre proposition a été soumise avec succès");
+    this.router.navigateByUrl("/listes/stages_proposes_ent");
     },
-    errorCode => this.statusCode = errorCode
+    errorCode => {this.statusCode = errorCode;
+      alert("Vérifier vos champs");}
+    
     );
    console.log("submit",  this.stage);  
   }

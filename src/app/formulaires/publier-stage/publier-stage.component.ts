@@ -12,6 +12,8 @@ import { Stage } from 'app/Entities/Stage/stage';
   styleUrls: ['./publier-stage.component.scss']
 })
 export class PublierStageComponent implements OnInit {
+  prop: any;
+  session: any;
 
   errorMessage: String;
   statusCode: number;
@@ -34,8 +36,14 @@ export class PublierStageComponent implements OnInit {
       
     });
   }
-
+  getSession() {
+    let userC = JSON.parse(sessionStorage.getItem('user'));
+    console.log(userC);
+    this.session = userC;
+    
+  }
   ngOnInit() {
+this.getSession();
   }
   onSubmit() {
     this.router.navigate( ['/'] );
@@ -47,11 +55,15 @@ export class PublierStageComponent implements OnInit {
     this.desc_stage = post.desc_stage;
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
-    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,3);
-    this.stageService.propStage(this.stage).subscribe(successCode => {
+    this.prop = this.session.id;
+    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop);
+    this.stageService.pubStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
-    },
-    errorCode => this.statusCode = errorCode
+    alert("Votre publication a été soumise avec succès");
+    this.router.navigateByUrl("/listes/stages_valides");
+  },
+  errorCode => {this.statusCode = errorCode;
+    alert("Vérifier vos champs");}
     );
    console.log("submit",  this.stage);  
   }

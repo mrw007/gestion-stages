@@ -22,4 +22,11 @@ getStageProp() {
             errorCode =>  this.statusCode = errorCode);  
             console.log('stagesProp'); 
 }
+accepter(id) {
+  this.stageService.updateStageValid(id).subscribe(
+        
+          errorCode =>  this.statusCode = errorCode);  
+          console.log('id',id); 
+}
+
 }

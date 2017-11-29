@@ -52,10 +52,10 @@ export class StageService {
         return this.http.put(this.stagetUrl + "/" + stage.id, stage, options).map(success => success.status).catch(this.handleError);
     }
 
-    updateStageValid(stage: Stage): Observable<number> {
+    updateStageValid(stageId: number): Observable<number> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
-        return this.http.put(this.stagetUrl + "Valid/" + stage.id, stage, options).map(success => success.status).catch(this.handleError);
+        return this.http.put(this.stagetUrl + "Valid/" + stageId, options).map(success => success.status).catch(this.handleError);
     }
 
     updateStageDeamnde(stage: Stage): Observable<number> {
