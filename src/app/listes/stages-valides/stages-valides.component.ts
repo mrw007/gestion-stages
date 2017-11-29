@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Stage } from 'app/Entities/Stage/stage';
 import { StageService } from 'app/Entities/Stage/stage.service';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -9,9 +12,11 @@ import { StageService } from 'app/Entities/Stage/stage.service';
   styleUrls: ['./stages-valides.component.scss']
 })
 export class StagesValidesComponent {
+  info: any;
   stages :any;
   statusCode: number;
-  constructor(private stageService: StageService) {
+  closeResult: string;
+  constructor(private stageService: StageService, private router: Router, private modalService: NgbModal) {
   }
   
   ngOnInit(): void {
@@ -23,5 +28,23 @@ getStagePub() {
             data => this.stages = data,
             errorCode =>  this.statusCode = errorCode);  
             console.log('stagesPub'); 
+}
+open(content,object) {
+  this.info=object;    
+  this.modalService.open(content).result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+  }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });
+}
+
+private getDismissReason(reason: any): string {
+  if (reason === ModalDismissReasons.ESC) {
+    return 'by pressing ESC';
+  } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+    return 'by clicking on a backdrop';
+  } else {
+    return `with: ${reason}`;
+  }
 }
 }

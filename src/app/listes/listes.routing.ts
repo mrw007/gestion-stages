@@ -6,6 +6,7 @@ import { EntreprisesComponent } from './entreprises/entreprises.component';
 import { StagesValidesComponent } from './stages-valides/stages-valides.component';
 import { StagesProposesComponent } from './stages-proposes/stages-proposes.component';
 import { EntreprisesAttenteComponent } from 'app/listes/entreprises-attente/entreprises-attente.component';
+import { StagesProposesEntComponent } from 'app/listes/stages-proposes-ent/stages-proposes-ent.component';
 
 export const ListesRoutes: Routes = [
   {
@@ -47,7 +48,7 @@ export const ListesRoutes: Routes = [
     },
     {
       path: 'stages_proposes_ent',
-      component: StagesProposesComponent,
+      component: StagesProposesEntComponent,
       data: {
         heading: 'Liste de Stages Proposés par vous'
       },

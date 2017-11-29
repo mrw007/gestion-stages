@@ -1,27 +1,126 @@
 <div class="card">
-    <div class="card-header"></div>
-    <div class="table-responsive">
-      <table class="table align-middle mb-0">
-        <thead>
-          <tr>
-            <th>Sujet</th>
-            <th>Description</th>
-            <th>Date Début</th>
-            <th>Date Fin</th>
-            <th>Entreprise</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let stages of stages">
-            <td>{{ stages.sujet_stage }}</td>
-            <td>{{ stages.desc_stage }}</td>
-            <td>{{ stages.date_deb }}</td>
-            <td>{{ stages.date_fin }}</td>
-            <td>{{ stages.nom_ent }}</td>
-            <td><a href="#">Plus d'informations</a></td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="card-header"></div>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Sujet</th>
+          <th>Description</th>
+          <th>Date Début</th>
+          <th>Date Fin</th>
+          <th>Entreprise</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stage of stages">
+          <td>{{ stage.sujet_stage }}</td>
+          <td>{{ stage.desc_stage }}</td>
+          <td>{{ stage.date_deb }}</td>
+          <td>{{ stage.date_fin }}</td>
+          <td>{{ stage.nom_ent }}</td>
+          <td>
+            <a (click)="open(content,stage)">Plus d'informations</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title text-uppercase">Informations sur le stage</h6>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card">
+      <div>
+        <div class="card-header-text" style="margin-left: 5%;">
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-green text-white icon icon-basic-book-pen"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Sujet</div>
+              <div style="color: black;">{{info?.sujet_stage}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-blue text-white icon icon-basic-gear"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Description</div>
+              <div style="color: black;">{{info?.desc_stage}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-cyan text-white icon icon-basic-calendar"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Date Début</div>
+              <div style="color: black;">{{info?.date_deb}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-red text-white icon icon-basic-calendar"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Date Fin</div>
+              <div style="color: black;">{{info?.date_fin}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-green text-white icon icon-basic-flag2"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Nom Entreprise</div>
+              <div style="color: black;">{{info?.nom_ent}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-blue text-white icon icon-basic-smartphone"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Téléphone</div>
+              <div style="color: black;">{{info?.tel_ent}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-pink text-white icon icon-basic-geolocalize-05"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Adresse</div>
+              <div style="color: black;">{{info?.adresse_ent}}</div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="mr-3">
+              <div class="widget-icon rounded-circle bg-red text-white icon icon-basic-mail"></div>
+            </div>
+            <div class="mr-3">
+              <div class="ff-headers text-color">Email</div>
+              <div style="color: black;">{{info?.email}}</div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
     </div>
   </div>
+</ng-template>
