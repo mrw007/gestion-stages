@@ -5,7 +5,8 @@ export class Stage {
         public desc_stage:string,
         public date_deb:Date,
         public date_fin:Date,
-        public id_prop:number
+        public id_prop:number,
+        public etat_proposition:number
         )
          { 
     }

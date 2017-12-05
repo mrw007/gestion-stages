@@ -8,28 +8,34 @@
           <th>Description</th>
           <th>Date Début</th>
           <th>Date Fin</th>
-          <th>Entreprise</th>
-          <th>Actionsee</th>
+          <th>Etat</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let stages of stages">
-          <td>{{ stages.sujet_stage }}</td>
-          <td>{{ stages.desc_stage }}</td>
-          <td>{{ stages.date_deb }}</td>
-          <td>{{ stages.date_fin }}</td>
-          <td>{{ stages.nom_ent }}</td>
+        <tr *ngFor="let stage of stages">
+          <td>{{ stage.sujet_stage }}</td>
+          <td>{{ stage.desc_stage }}</td>
+          <td>{{ stage.date_deb }}</td>
+          <td>{{ stage.date_fin }}</td>
+
+          <ng-template #acc>Acceptée</ng-template>
+          <ng-template #ref>Refusée</ng-template>
           <td>
-              <button type="button" class="btn btn-info btn-icon mr-1 mb-1">
-                  <i class="icon icon-arrows-sign-up"></i>
-                  <span>Modifier</span>
-                </button>
-            <span>
-            <button type="button" class="btn btn-danger btn-icon mr-1 mb-1">
-              <i class="icon icon-basic-ban"></i>
-              <span>Annuler</span>
+            <p *ngIf="stage.etat_proposition==='1';then acc;"></p>
+            <p *ngIf="stage.etat_proposition==='0';then ref;"></p>
+          </td>
+          <td>
+            <button type="button" class="btn btn-info btn-icon mr-1 mb-1">
+              <i class="icon icon-arrows-sign-up"></i>
+              <span>Modifier</span>
             </button>
-          </span>
+            <span>
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" (click)="deleteStage()">
+                <i class="icon icon-basic-ban"></i>
+                <span>Annuler</span>
+              </button>
+            </span>
           </td>
         </tr>
       </tbody>
