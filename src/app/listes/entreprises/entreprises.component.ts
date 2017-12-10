@@ -26,7 +26,7 @@ export class EntreprisesComponent {
        this.entrepriseService.getAllEntreprises("3").subscribe(
                data => this.entreprises = data,
                errorCode =>  this.statusCode = errorCode);  
-               console.log('getAllEntreprises'); 
+ 
   }
   refEntreprise(id)
   {
@@ -39,7 +39,7 @@ export class EntreprisesComponent {
       errorCode => this.statusCode = errorCode
       );
   
-     console.log("submitEntreprise",  this.statusCode);    
+    
 
   }  
 }

@@ -21,12 +21,11 @@ getStageProp() {
     this.stageService.getStageProp().subscribe(
             data => this.stages = data,
             errorCode =>  this.statusCode = errorCode);  
-            console.log('stagesProp'); 
+         
 }
 accepter(object):void {
   this.stageService.updateStageValid(object.id) .subscribe(successCode => {
-    this.statusCode = successCode;
-    console.log('id',object.id); 
+    this.statusCode = successCode; 
     alert("Stage est accepté");
     this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
     this.router.navigateByUrl("/listes/stages_proposes"));
@@ -36,8 +35,7 @@ accepter(object):void {
 }
 refuser(object):void {
   this.stageService.deleteStage(object.id) .subscribe(successCode => {
-    this.statusCode = successCode;
-    console.log('id',object.id); 
+    this.statusCode = successCode; 
     alert("Stage est refusé");
     this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
     this.router.navigateByUrl("/listes/stages_proposes"));

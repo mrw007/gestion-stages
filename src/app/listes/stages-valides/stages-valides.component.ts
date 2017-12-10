@@ -26,8 +26,7 @@ export class StagesValidesComponent {
 getStagePub() {
     this.stageService.getStagePub().subscribe(
             data => this.stages = data,
-            errorCode =>  this.statusCode = errorCode);  
-            console.log('stagesPub'); 
+            errorCode =>  this.statusCode = errorCode); 
 }
 open(content,object) {
   this.info=object;    

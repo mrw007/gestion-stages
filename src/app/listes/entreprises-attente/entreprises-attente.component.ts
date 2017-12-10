@@ -13,7 +13,7 @@ export class EntreprisesAttenteComponent implements OnInit {
 
   constructor(private entrepriseService: EntrepriseService) {
   }
-  
+
   statusCode: number;
   requestProcessing = false;
   articleIdToUpdate = null;
@@ -22,43 +22,36 @@ export class EntreprisesAttenteComponent implements OnInit {
   entrepriseAcc: AcceptEntreprise;
   id: any;
   ngOnInit(): void {
-       this.getAllEntreprises();
-  } 
+    this.getAllEntreprises();
+  }
 
   getAllEntreprises() {
-       this.entrepriseService.getAllEntreprises("4").subscribe(
-               data => this.entreprises = data,
-               errorCode =>  this.statusCode = errorCode);  
-               console.log('getAllEntreprises'); 
+    this.entrepriseService.getAllEntreprises("4").subscribe(
+      data => this.entreprises = data,
+      errorCode => this.statusCode = errorCode);
   }
-  accEntreprise(id)
-  {
+  accEntreprise(id) {
     this.id = id;
-    this.entrepriseAcc =new AcceptEntreprise( id, 3);
-    console.log("heki entreprise Accept",  this.entrepriseAcc); 
+    this.entrepriseAcc = new AcceptEntreprise(id, 3);
     this.entrepriseService.acceptEntreprise(this.entrepriseAcc)
       .subscribe(successCode => {
         this.statusCode = successCode;
-       
+
       },
       errorCode => this.statusCode = errorCode
       );
-  
-     console.log("submitEntreprise",  this.statusCode);    
 
-  }  
-  refEntreprise(id)
-  {
+
+
+  }
+  refEntreprise(id) {
     this.id = id;
     this.entrepriseService.deleteEntrepriseById(id)
       .subscribe(successCode => {
         this.statusCode = successCode;
-       
       },
       errorCode => this.statusCode = errorCode
       );
-  
-     console.log("submitEntreprise",  this.statusCode);    
 
-  }  
+  }
 }

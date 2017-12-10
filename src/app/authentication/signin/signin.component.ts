@@ -10,6 +10,7 @@ import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-signin',
@@ -37,7 +38,7 @@ export class SigninComponent implements OnInit {
   entreprise: any;
   admin: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private compteService: CompteService, private etudiantService: EtudiantService, private enseignantService: EnseignantService, private entrepriseService: EntrepriseService) {
+  constructor(private fb: FormBuilder, private router: Router, private compteService: CompteService, private etudiantService: EtudiantService, private enseignantService: EnseignantService, private entrepriseService: EntrepriseService,private alertService: AlertService) {
 
     this.formSignin = new FormGroup({
       username: new FormControl(),
@@ -80,7 +81,7 @@ export class SigninComponent implements OnInit {
       },
       errorCode => {
         this.statusCode = errorCode;
-        alert("Nom d'utilisateur ou mot de passe incorrect")
+        this.alertService.danger("Nom d'utilisateur ou mot de passe incorrect");
       });
   }
   getEtudiantById() {

@@ -25,7 +25,7 @@ export class EnseignantsComponent {
        this.enseignantService.getAllEnseignants().subscribe(
                data => this.enseignants = data,
                errorCode =>  this.statusCode = errorCode);  
-               console.log('getAllEnseignants'); 
+              
   }
 }
 

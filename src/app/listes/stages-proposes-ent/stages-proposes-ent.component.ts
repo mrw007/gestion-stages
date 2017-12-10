@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StageService } from 'app/Entities/Stage/stage.service';
 import { Stage } from 'app/Entities/Stage/stage';
+import { AlertService } from 'ngx-alerts';
 @Component({
   selector: 'app-stages-proposes-ent',
   templateUrl: './stages-proposes-ent.component.html',
@@ -10,7 +11,7 @@ export class StagesProposesEntComponent implements OnInit {
   stages: any;
   statusCode: number;
   id: any;
-  constructor(private stageService: StageService) {
+  constructor(private stageService: StageService,private alertService: AlertService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,6 @@ export class StagesProposesEntComponent implements OnInit {
     this.stageService.getStageByIdProp(id).subscribe(
       data => {
       this.stages = data;
-        console.log('stagesProp', this.stages)
       },
       errorCode => this.statusCode = errorCode);
 
@@ -34,12 +34,12 @@ export class StagesProposesEntComponent implements OnInit {
     this.stageService.deleteStage(id)
       .subscribe(successCode => {
         this.statusCode = successCode;
-        alert('Stage Supprimé')
+        this.alertService.success('Stage Supprimé')
       },
       errorCode => this.statusCode = errorCode
       );
 
-    console.log("stageSupp", this.statusCode);
+ 
 
   }
 }

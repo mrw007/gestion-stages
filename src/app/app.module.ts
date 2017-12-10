@@ -17,7 +17,6 @@ import { AlertModule, AlertService } from 'ngx-alerts';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,4 +44,4 @@ export function createTranslateLoader(http: Http) {
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

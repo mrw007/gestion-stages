@@ -10,6 +10,7 @@ import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Etudiant } from 'app/Entities/Etudiant/etudiant';
 import { Enseignant } from 'app/Entities/Enseignant/enseignant';
 import { Entreprise } from 'app/Entities/Entreprise/entreprise';
+import { AlertService } from 'ngx-alerts';
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -69,7 +70,7 @@ adresseEntreprise: string='';
   test:string;
 
   
-  constructor(private fb: FormBuilder, private router: Router ,private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService) {
+  constructor(private fb: FormBuilder, private router: Router ,private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService, private alertService: AlertService) {
 
     this.EtudiantForm = new FormGroup({
       nom: new FormControl(),
@@ -143,7 +144,8 @@ submitEtudiant(post)
   this.etudiantService.createEtudiant(this.etudiant)
     .subscribe(successCode => {
       this.statusCode = successCode;
-     
+      this.alertService.success('Votre compte à été créé avec succès');
+      this.router.navigateByUrl('/authentication/signin');
     },
     errorCode => this.statusCode = errorCode
     );
@@ -170,6 +172,8 @@ submitEntreprise(post)
     this.entrepriseService.createEntreprise(this.entreprise)
       .subscribe(successCode => {
         this.statusCode = successCode;
+        this.alertService.success('Votre compte à été créé avec succès');
+        this.router.navigateByUrl('/authentication/signin');
        
       },
       errorCode => this.statusCode = errorCode
@@ -195,7 +199,8 @@ submitEnseignant(post)
     this.enseignantService.createEnseignant(this.enseignant)
       .subscribe(successCode => {
         this.statusCode = successCode;
-       
+        this.alertService.success('Votre compte à été créé avec succès');
+        this.router.navigateByUrl('/authentication/signin');
       },
       errorCode => this.statusCode = errorCode
       );

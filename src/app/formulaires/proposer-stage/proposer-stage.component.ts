@@ -6,6 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 import {FormsModule} from '@angular/forms';
 import { StageService } from 'app/Entities/Stage/stage.service';
 import { Stage } from 'app/Entities/Stage/stage';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-proposer-stage',
@@ -27,7 +28,7 @@ export class ProposerStageComponent implements OnInit {
   date_deb:Date;
   date_fin: Date;
   
-  constructor(private fb: FormBuilder, private router: Router ,private stageService: StageService) {
+  constructor(private fb: FormBuilder, private router: Router ,private stageService: StageService, private alertService: AlertService) {
     this.StageForm = new FormGroup({
       sujet_stage: new FormControl(),
       desc_stage: new FormControl(),
@@ -61,7 +62,7 @@ this.getSession();
     this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop,0);
     this.stageService.propStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
-    alert("Votre proposition a été soumise avec succès");
+    this.alertService.success("Votre proposition a été soumise avec succès");
     this.router.navigateByUrl("/listes/stages_proposes_ent");
     },
     errorCode => {this.statusCode = errorCode;
