@@ -10,7 +10,7 @@ import { Entreprise } from 'app/Entities/Entreprise/entreprise';
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Enseignant } from 'app/Entities/Enseignant/enseignant';
-import { AlertService } from 'app/alert/alert.service';
+import { AlertService } from 'ngx-alerts';
 declare var jquery:any; declare var $ :any;
 @Component({
   selector: 'app-social',
@@ -154,6 +154,13 @@ adresseEntreprise: string='';
       });
   
   }
+  showAlerts(): void{
+    this.alertService.info('this is an info alert');
+    this.alertService.danger('this is a danger alert');
+    this.alertService.success('this is a success alert');
+    this.alertService.warning('this is a warning alert');
+    console.log('rr');
+}    
   onModif_pass(post) {
     this.pass = post.pass;
     this.comf_pass = post.comf_pass;
@@ -197,8 +204,8 @@ adresseEntreprise: string='';
         sessionStorage.setItem('user', JSON.stringify(this.etudiant));
         this.getSession();
         //location.reload();
-         this.alertService.success("Modification a été effectué avec succes");
-      
+         //this.alertService.success("Modification a été effectué avec succes");
+         this.alertService.success('Modification a été effectué avec succes');
         this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
         this.router.navigateByUrl("/"));
       },

@@ -4,20 +4,16 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
-
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarModule } from 'ng-sidebar';
-
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule } from './shared/shared.module';
-import { AlertComponent } from './alert/alert.component';
-import { AlertService } from 'app/alert/alert.service';
-
+import { AlertModule, AlertService } from 'ngx-alerts';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -26,11 +22,11 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    AlertComponent
+    AuthLayoutComponent
   ],
   imports: [
     BrowserModule,
+    AlertModule.forRoot(),
     BrowserAnimationsModule,
     SharedModule,
     RouterModule.forRoot(AppRoutes),
@@ -46,8 +42,7 @@ export function createTranslateLoader(http: Http) {
     NgbModule.forRoot(),
     SidebarModule.forRoot()
   ],
-  providers: [  AlertService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

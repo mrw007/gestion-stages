@@ -9,7 +9,7 @@ import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { EtudiantService } from 'app/Entities/Etudiant/etudiant.service';
 import { CompteService } from 'app/Entities/Compte/compte.service';
-import { AlertService } from 'app/alert/alert.service';
+//import { AlertService } from 'app/alert/alert.service';
 
 
 @NgModule({
@@ -17,8 +17,8 @@ import { AlertService } from 'app/alert/alert.service';
   providers: [EtudiantService,
     EnseignantService,
     EntrepriseService,
-    CompteService,
-    AlertService],
+    CompteService
+    ],
   declarations: [SocialComponent]
 })
 
