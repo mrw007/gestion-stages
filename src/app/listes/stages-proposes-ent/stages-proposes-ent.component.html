@@ -31,7 +31,8 @@
               <span>Modifier</span>
             </button>
             <span>
-              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" (click)="deleteStage()">
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" mwlConfirmationPopover [message]="message" confirmText="Oui"
+                cancelText="Non" placement="top" (confirm)="deleteStage(stage.id)">
                 <i class="icon icon-basic-ban"></i>
                 <span>Annuler</span>
               </button>

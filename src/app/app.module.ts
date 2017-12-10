@@ -14,6 +14,7 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { AlertModule, AlertService } from 'ngx-alerts';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -25,6 +26,7 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     BrowserModule,
+    ConfirmationPopoverModule.forRoot(),
     AlertModule.forRoot(),
     BrowserAnimationsModule,
     SharedModule,

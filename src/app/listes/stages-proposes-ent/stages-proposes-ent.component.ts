@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StageService } from 'app/Entities/Stage/stage.service';
 import { Stage } from 'app/Entities/Stage/stage';
 import { AlertService } from 'ngx-alerts';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-stages-proposes-ent',
   templateUrl: './stages-proposes-ent.component.html',
@@ -11,7 +12,8 @@ export class StagesProposesEntComponent implements OnInit {
   stages: any;
   statusCode: number;
   id: any;
-  constructor(private stageService: StageService,private alertService: AlertService) {
+  message: string ="Etes-vous sûr de supprimer ce sujet?";
+  constructor(private stageService: StageService,private alertService: AlertService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -34,7 +36,9 @@ export class StagesProposesEntComponent implements OnInit {
     this.stageService.deleteStage(id)
       .subscribe(successCode => {
         this.statusCode = successCode;
-        this.alertService.success('Stage Supprimé')
+        this.alertService.success('Stage Supprimé');
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/listes/stages_proposes_ent"));
       },
       errorCode => this.statusCode = errorCode
       );

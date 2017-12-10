@@ -15,13 +15,15 @@ import { CompteService } from 'app/Entities/Compte/compte.service';
 import { EntreprisesAttenteComponent } from './entreprises-attente/entreprises-attente.component';
 import { StageService } from 'app/Entities/Stage/stage.service';
 import { StagesProposesEntComponent } from './stages-proposes-ent/stages-proposes-ent.component';
-
-
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import 'bootstrap/dist/css/bootstrap.css';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(ListesRoutes),
+    RouterModule.forChild(ListesRoutes), ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    }),
     NgbTooltipModule
   ],
   providers: [
