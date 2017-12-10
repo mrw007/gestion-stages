@@ -15,6 +15,9 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { AlertComponent } from './alert/alert.component';
+import { AlertService } from 'app/alert/alert.service';
+
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -23,7 +26,8 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ export function createTranslateLoader(http: Http) {
     NgbModule.forRoot(),
     SidebarModule.forRoot()
   ],
-  providers: [],
+  providers: [  AlertService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

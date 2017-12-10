@@ -56,7 +56,7 @@ this.getSession();
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
     this.prop = this.session.id;
-    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop);
+    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop,0);
     this.stageService.pubStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
     alert("Votre publication a été soumise avec succès");

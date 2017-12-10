@@ -10,6 +10,7 @@ import { Entreprise } from 'app/Entities/Entreprise/entreprise';
 import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Enseignant } from 'app/Entities/Enseignant/enseignant';
+import { AlertService } from 'app/alert/alert.service';
 declare var jquery:any; declare var $ :any;
 @Component({
   selector: 'app-social',
@@ -104,7 +105,8 @@ telEntreprise: string='';
 faxEntreprise: string='';
 adresseEntreprise: string='';
 
-  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService) {
+  constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService,
+    private alertService: AlertService) {
 
     this.modif_pass = new FormGroup({
       pass: new FormControl(),
@@ -195,7 +197,7 @@ adresseEntreprise: string='';
         sessionStorage.setItem('user', JSON.stringify(this.etudiant));
         this.getSession();
         //location.reload();
-        alert("Vous changement ont étés enregistrés avec succès");
+         this.alertService.success("Modification a été effectué avec succes");
       
         this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
         this.router.navigateByUrl("/"));
@@ -269,7 +271,15 @@ submitEnseignant(post)
   
      console.log("submitEnseignant",  this.statusCode);  
   }  
+
+
+  success(message: string) { 
+    this.alertService.success(message);
 }
+
+}
+
+
 
 
 
