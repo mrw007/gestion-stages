@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Entreprise } from 'app/Entities/Entreprise/entreprise';
 import { AcceptEntreprise } from 'app/Entities/Entreprise/AcceptEntreprise';
+import { Router } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-entreprises-attente',
@@ -11,7 +13,7 @@ import { AcceptEntreprise } from 'app/Entities/Entreprise/AcceptEntreprise';
 export class EntreprisesAttenteComponent implements OnInit {
 
 
-  constructor(private entrepriseService: EntrepriseService) {
+  constructor(private entrepriseService: EntrepriseService , private router: Router,private alertService: AlertService) {
   }
 
   statusCode: number;
@@ -36,7 +38,9 @@ export class EntreprisesAttenteComponent implements OnInit {
     this.entrepriseService.acceptEntreprise(this.entrepriseAcc)
       .subscribe(successCode => {
         this.statusCode = successCode;
-
+        this.alertService.success('Entreprise accepté');
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/listes/entreprises_attente"));
       },
       errorCode => this.statusCode = errorCode
       );
@@ -49,6 +53,9 @@ export class EntreprisesAttenteComponent implements OnInit {
     this.entrepriseService.deleteEntrepriseById(id)
       .subscribe(successCode => {
         this.statusCode = successCode;
+        this.alertService.danger('Entreprise refusé');
+        this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl("/listes/entreprises_attente"));
       },
       errorCode => this.statusCode = errorCode
       );

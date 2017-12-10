@@ -17,6 +17,7 @@ import { StageService } from 'app/Entities/Stage/stage.service';
 import { StagesProposesEntComponent } from './stages-proposes-ent/stages-proposes-ent.component';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import 'bootstrap/dist/css/bootstrap.css';
     RouterModule.forChild(ListesRoutes), ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
     }),
-    NgbTooltipModule
+    NgbTooltipModule,
+    Ng2TableModule
   ],
   providers: [
     EtudiantService,

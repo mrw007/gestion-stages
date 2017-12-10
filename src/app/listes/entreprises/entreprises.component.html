@@ -1,36 +1,17 @@
 <div class="card">
-    <div class="card-header">Media list</div>
-    <div class="table-responsive">
-      <table class="table align-middle mb-0">
-        <thead>
-          <tr>
-            <th>Nom Entreprise</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Téléphone Entreprise</th>
-            <th>Téléphone Fax</th>
-            <th>Email</th>
-            <th>Adresse</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of entreprises">
-            <td>{{ user.nom_ent }}</td>
-            <td>{{ user.nom }}</td>
-            <td>{{ user.prenom }}</td>
-            <td>{{ user.tel_ent }}</td>
-            <td>{{ user.fax_ent }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.adresse_ent }}</td>
-            <td>
-            <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" (click)="refEntreprise(user.id)">
-              <i class="icon icon-basic-ban"></i>
-              <span>Supprimer</span>
-            </button>
-          </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="card-header"></div>
+  <div class="col-md-4">
+    <input *ngIf="config.filtering" placeholder="Filter tout les colonnes" [ngTableFiltering]="config.filtering" class="form-control"
+      (tableChanged)="onChangeTable(config)" />
   </div>
+<br>
+<ng-table [config]="config" (tableChanged)="onChangeTable(config)" (cellClicked)="onCellClick($event)" [rows]="rows" [columns]="columns">
+</ng-table>
+<!--<button type="button" class="btn btn-danger btn-icon mr-1 mb-1" mwlConfirmationPopover message="Etes-vous sûr de vouloir refuser cette entreprise?" confirmText="Oui"
+cancelText="Non" placement="top"  (confirm)="refEntreprise(user.id)">
+  <i class="icon icon-basic-ban"></i>
+  <span>Supprimer</span>
+</button>-->
+</div>
+            
+         

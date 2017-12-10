@@ -15,6 +15,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { AlertModule, AlertService } from 'ngx-alerts';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -26,6 +27,7 @@ export function createTranslateLoader(http: Http) {
   ],
   imports: [
     BrowserModule,
+    Ng2TableModule,
     ConfirmationPopoverModule.forRoot(),
     AlertModule.forRoot(),
     BrowserAnimationsModule,
