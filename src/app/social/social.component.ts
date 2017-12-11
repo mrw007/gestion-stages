@@ -11,6 +11,8 @@ import { EnseignantService } from 'app/Entities/Enseignant/enseignant.service';
 import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { Enseignant } from 'app/Entities/Enseignant/enseignant';
 import { AlertService } from 'ngx-alerts';
+import { CompteService } from 'app/Entities/Compte/compte.service';
+import { Compte } from 'app/Entities/Compte/compte';
 declare var jquery:any; declare var $ :any;
 @Component({
   selector: 'app-social',
@@ -72,6 +74,7 @@ export class SocialComponent implements OnInit {
   public EntrepriseForm: FormGroup;
   enseignant:any;
   entreprise:any;
+  cpt:any;
 
 
   //init General Form Values
@@ -106,7 +109,7 @@ faxEntreprise: string='';
 adresseEntreprise: string='';
 
   constructor(private fb: FormBuilder, private router: Router, private modalService: NgbModal, private etudiantService: EtudiantService,private enseignantService: EnseignantService,private entrepriseService: EntrepriseService,
-    private alertService: AlertService) {
+    private alertService: AlertService,private compteService:CompteService) {
 
     this.modif_pass = new FormGroup({
       pass: new FormControl(),
@@ -164,8 +167,23 @@ adresseEntreprise: string='';
   onModif_pass(post) {
     this.pass = post.pass;
     this.comf_pass = post.comf_pass;
-    //test
+    if(post.pass !=post.comf_pass || post.pass==null || post.comf_pass==null){
+      this.alertService.danger('Vérifier votre mot de passe');
+    }
+    else{
+    this.cpt=new Compte(this.session.email,post.pass);
+    this.compteService.updatePass(this.cpt, this.session.id)
+    .subscribe(successCode => {
+      sessionStorage.setItem('user', JSON.stringify(this.cpt));
+      this.getSession();
+       this.alertService.success('Modification a été effectué avec succes');
+      this.router.navigateByUrl('/DummyComponent', {skipLocationChange: true}).then(()=>
+      this.router.navigateByUrl("/"));
+    },
+    errorCode => this.statusCode = errorCode
+    );
     console.log("modif pass", post);
+  }
   }
   open(content) {    
     this.modalService.open(content).result.then((result) => {

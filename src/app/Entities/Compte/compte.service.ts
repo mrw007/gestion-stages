@@ -16,6 +16,11 @@ export class CompteService {
         let options = new RequestOptions({ headers: cpHeaders });
         return this.http.post(this.CompteUrl, compte, options).map(this.extractData).catch(this.handleError);
     }
+    updatePass(compte: Compte, id:String): Observable<Compte> {
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        return this.http.put(this.CompteUrl + "/" + id ,compte,options).map(success => success.status).catch(this.handleError);
+    }
     
     //Extract Data method
     private extractData(res: Response) {

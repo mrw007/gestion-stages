@@ -76,7 +76,7 @@
     </div>
     <div class="col-sm-8">
       <div class="card">
-        <ngb-tabset class="card-tab">
+        <ngb-tabset class="card-tab" *ngIf="compte != 'admin'">
           <ngb-tab *ngIf="compte === 'etudiant'" title="Informations Etudes">
             <ng-template ngbTabContent>
               <div>
