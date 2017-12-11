@@ -60,16 +60,22 @@ this.getSession();
     this.date_fin = post.date_fin;
     this.prop = this.session.id;
     this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop,0);
+    if(post.date_deb>post.date_fin)
+    {
+        this.alertService.warning("Vérifier les dates");
+    }
+    else{
     this.stageService.propStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
     this.alertService.success("Votre proposition a été soumise avec succès");
     this.router.navigateByUrl("/listes/stages_proposes_ent");
     },
     errorCode => {this.statusCode = errorCode;
-      alert("Vérifier vos champs");}
+      this.alertService.danger("Vérifier vos champs");}
     
     );
    console.log("submit",  this.stage);  
-  }
+  
 }
-
+}
+}

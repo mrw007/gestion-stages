@@ -18,6 +18,7 @@ import { StagesProposesEntComponent } from './stages-proposes-ent/stages-propose
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
+import { FormBuilder } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { Ng2TableModule } from 'ng2-table/ng2-table';
     Ng2TableModule
   ],
   providers: [
+    FormBuilder,
     EtudiantService,
     EnseignantService,
     EntrepriseService,

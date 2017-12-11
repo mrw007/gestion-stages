@@ -35,6 +35,15 @@
           </div>
         </div>
       </fieldset>
+      <fieldset class="form-group">
+        <label for="date_fin">
+          L'entreprise propriétaire
+        </label>
+        <select class="form-control" name="entreprise" formControlName="id_ent">
+          <option disabled selected value="-1">---- L'entreprise ----</option>
+          <option *ngFor="let entreprise of entreprises" [value]="entreprise.id">{{entreprise.nom_ent}}</option>
+        </select>
+      </fieldset>
       <button class="btn btn-primary" type="submit">Publier</button>
     </form>
   </div>

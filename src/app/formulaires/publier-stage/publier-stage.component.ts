@@ -7,12 +7,16 @@ import {FormsModule} from '@angular/forms';
 import { StageService } from 'app/Entities/Stage/stage.service';
 import { Stage } from 'app/Entities/Stage/stage';
 import { AlertService } from 'ngx-alerts';
+import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
+import { Entreprise } from 'app/Entities/Entreprise/entreprise';
+
 @Component({
   selector: 'app-publier-stage',
   templateUrl: './publier-stage.component.html',
   styleUrls: ['./publier-stage.component.scss']
 })
 export class PublierStageComponent implements OnInit {
+  entreprises: Entreprise[];
   prop: any;
   session: any;
 
@@ -20,21 +24,22 @@ export class PublierStageComponent implements OnInit {
   statusCode: number;
 
   public StageForm: FormGroup;
-
+  
   post:any;  
   stage:any;
   sujet_stage: string='';
   desc_stage: string='';
   date_deb:Date;
   date_fin: Date;
+  id_ent:number;
   
-  constructor(private fb: FormBuilder, private router: Router ,private stageService: StageService,private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private router: Router ,private stageService: StageService,private alertService: AlertService,private entrepriseService: EntrepriseService) {
     this.StageForm = new FormGroup({
       sujet_stage: new FormControl(),
       desc_stage: new FormControl(),
       date_deb: new FormControl(),
       date_fin: new FormControl(),
-      
+      id_ent: new FormControl(),
     });
   }
   getSession() {
@@ -42,8 +47,15 @@ export class PublierStageComponent implements OnInit {
     this.session = userC;
     
   }
+  getAllEntreprises() {
+    this.entrepriseService.getAllEntreprises("3").subscribe(
+            data => this.entreprises = data,
+            errorCode =>  this.statusCode = errorCode);  
+            console.log('getAllEntreprises'); 
+}
   ngOnInit() {
 this.getSession();
+this.getAllEntreprises();
   }
   onSubmit() {
     this.router.navigate( ['/'] );
@@ -55,8 +67,13 @@ this.getSession();
     this.desc_stage = post.desc_stage;
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
-    this.prop = this.session.id;
-    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,this.prop,0);
+    this.id_ent = post.id_ent;
+    this.stage =new Stage("0",post.sujet_stage,post.desc_stage,post.date_deb,post.date_fin,post.id_ent,0);
+    if(post.date_deb>post.date_fin)
+    {
+        this.alertService.warning("Vérifier les dates");
+    }
+    else{
     this.stageService.pubStage(this.stage).subscribe(successCode => {
     this.statusCode = successCode;
     this.alertService.success("Votre publication a été soumise avec succès");
@@ -66,4 +83,5 @@ this.getSession();
     this.alertService.danger("Vérifier vos champs");}
     ); 
   }
+}
 }
