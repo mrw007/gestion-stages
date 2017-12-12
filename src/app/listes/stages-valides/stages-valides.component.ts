@@ -28,6 +28,9 @@ getStagePub() {
             data => this.stages = data,
             errorCode =>  this.statusCode = errorCode); 
 }
+print() {
+  
+}
 open(content,object) {
   this.info=object;    
   this.modalService.open(content).result.then((result) => {
