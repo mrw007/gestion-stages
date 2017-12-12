@@ -20,13 +20,13 @@
           <td>{{ stage.date_fin }}</td>
 
           <ng-template #acc>Acceptée</ng-template>
-          <ng-template #ref>Refusée</ng-template>
+          <ng-template #enc>en cours de vérification</ng-template>
           <td>
             <p *ngIf="stage.etat_proposition==='1';then acc;"></p>
-            <p *ngIf="stage.etat_proposition==='0';then ref;"></p>
+            <p *ngIf="stage.etat_proposition==='0';then enc;"></p>
           </td>
           <td>
-            <button type="button" class="btn btn-info btn-icon mr-1 mb-1">
+            <button type="button" class="btn btn-info btn-icon mr-1 mb-1" (click)="open(content,stage.id)">
               <i class="icon icon-arrows-sign-up"></i>
               <span>Modifier</span>
             </button>
@@ -43,3 +43,55 @@
     </table>
   </div>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title text-uppercase">Modifier Informations du Stage</h6>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="StageForm" (ngSubmit)="updateStage(StageForm.value);d('Cross click')">
+      <fieldset class="form-group">
+        <label for="prenom">
+          Sujet du Stage
+        </label>
+        <input type="text" class="form-control" placeholder="Sujet du stage" required formControlName="sujet_stage" [(ngModel)]='nStage.sujet_stage'
+        />
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="">
+          Description
+        </label>
+        <div>
+          <textarea class="form-control" formControlName="desc_stage" [(ngModel)]='nStage.desc_stage' rows="5"></textarea>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="date_naiss">
+          Date Début du Stage
+        </label>
+        <div>
+          <div>
+            <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_deb" [(ngModel)]='nStage.date_deb'>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="date_naiss">
+          Date Fin du Stage
+        </label>
+        <div>
+          <div>
+            <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_fin" [(ngModel)]='nStage.date_fin'>
+          </div>
+        </div>
+      </fieldset>
+      <input type="hidden" formControlName="id" [(ngModel)]='nStage.id'>
+      <input type="hidden" formControlName="id_prop" [(ngModel)]='nStage.id_prop'>
+      <button class="btn btn-primary" type="submit">Modifier</button>
+    </form>
+  </div>
+</ng-template>

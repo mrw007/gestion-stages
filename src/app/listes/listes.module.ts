@@ -19,6 +19,7 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { FormBuilder } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import { FormBuilder } from '@angular/forms';
       confirmButtonType: 'danger' // set defaults here
     }),
     NgbTooltipModule,
-    Ng2TableModule
+    Ng2TableModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   providers: [
     FormBuilder,

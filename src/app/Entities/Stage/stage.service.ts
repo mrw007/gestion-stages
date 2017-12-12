@@ -17,6 +17,12 @@ export class StageService {
         console.log(this.stagetUrl);
         return this.http.get(this.stagetUrl + "/" + 0).map(this.extractData).catch(this.handleError);
     }
+    getStageByID(id : String): Observable<Stage> {
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        console.log(this.stagetUrl);
+        return this.http.get(this.stagetUrl + "Id/" + id).map(this.extractData).catch(this.handleError);
+    }
 
     getStagePub(): Observable<Stage> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
