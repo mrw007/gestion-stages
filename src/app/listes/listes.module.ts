@@ -21,6 +21,7 @@ import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { FormBuilder } from '@angular/forms';
 import { PfeProposesComponent } from './pfe-proposes/pfe-proposes.component';
 import { PfeService } from 'app/Entities/Pfe/pfe.service';
+import { PfePubliesComponent } from './pfe-publies/pfe-publies.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,6 @@ import { PfeService } from 'app/Entities/Pfe/pfe.service';
     StageService,
     PfeService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent, PfePubliesComponent]
 })
 export class ListesModule { }

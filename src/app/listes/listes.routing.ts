@@ -8,6 +8,7 @@ import { StagesProposesComponent } from './stages-proposes/stages-proposes.compo
 import { EntreprisesAttenteComponent } from 'app/listes/entreprises-attente/entreprises-attente.component';
 import { StagesProposesEntComponent } from 'app/listes/stages-proposes-ent/stages-proposes-ent.component';
 import { PfeProposesComponent } from 'app/listes/pfe-proposes/pfe-proposes.component';
+import { PfePubliesComponent } from 'app/listes/pfe-publies/pfe-publies.component';
 
 export const ListesRoutes: Routes = [
   {
@@ -66,6 +67,13 @@ export const ListesRoutes: Routes = [
       component: PfeProposesComponent,
       data: {
         heading: 'Liste de Pfe Proposés'
+      },
+    },
+    {
+      path: 'pfe_pub',
+      component: PfePubliesComponent,
+      data: {
+        heading: 'Liste de Pfe Publiés'
       },
     }]
   }
