@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header"></div>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Sujet</th>
+          <th>Description</th>
+          <th>Date Début</th>
+          <th>Date Fin</th>
+          <th>Entreprise</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pfe of pfes">
+          <td>{{ pfe.sujet_pfe }}</td>
+          <td>{{ pfe.desc_pfe }}</td>
+          <td>{{ pfe.date_deb }}</td>
+          <td>{{ pfe.date_fin }}</td>
+          <td>{{ pfe.nom_ent }}</td>
+          <td>
+            
+              <span>Plus d info</span>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

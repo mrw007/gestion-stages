@@ -1,0 +1,50 @@
+<div class="card card-block mb-0 rounded-0 p-6 col-sm-12 col-md-6">
+  <div>
+    <form [formGroup]="PfeForm" (ngSubmit)="OnsubmitPfe(PfeForm.value)">
+      <fieldset class="form-group">
+        <label for="prenom">
+          Sujet du Pfe
+        </label>
+        <input type="text" class="form-control" placeholder="Sujet du Pfe" required formControlName="sujet_pfe" />
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="nom_ent">
+          Description
+        </label>
+        <div>
+          <textarea class="form-control" formControlName="desc_pfe" rows="5"></textarea>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="date_debut">
+          Date Début du Pfe
+        </label>
+        <div>
+          <div> 
+            <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_deb">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="date_fin">
+          Date Fin du Pfe
+        </label>
+        <div>
+          <div>
+            <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_fin">
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="form-group">
+        <label for="date_fin">
+          L'entreprise propriétaire
+        </label>
+        <select class="form-control" name="entreprise" formControlName="id_ent">
+          <option disabled selected value="-1">---- L'entreprise ----</option>
+          <option *ngFor="let entreprise of entreprises" [value]="entreprise.id">{{entreprise.nom_ent}}</option>
+        </select>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Publier</button>
+    </form>
+  </div>
+</div>
