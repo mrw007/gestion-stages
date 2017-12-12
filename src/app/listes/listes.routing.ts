@@ -7,6 +7,7 @@ import { StagesValidesComponent } from './stages-valides/stages-valides.componen
 import { StagesProposesComponent } from './stages-proposes/stages-proposes.component';
 import { EntreprisesAttenteComponent } from 'app/listes/entreprises-attente/entreprises-attente.component';
 import { StagesProposesEntComponent } from 'app/listes/stages-proposes-ent/stages-proposes-ent.component';
+import { PfeProposesComponent } from 'app/listes/pfe-proposes/pfe-proposes.component';
 
 export const ListesRoutes: Routes = [
   {
@@ -58,6 +59,13 @@ export const ListesRoutes: Routes = [
       component: EntreprisesAttenteComponent,
       data: {
         heading: "Liste des demendes d'inscription d'entreprises"
+      },
+    },
+    {
+      path: 'pfe_proposes',
+      component: PfeProposesComponent,
+      data: {
+        heading: 'Liste de Pfe Proposés'
       },
     }]
   }

@@ -19,6 +19,8 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { FormBuilder } from '@angular/forms';
+import { PfeProposesComponent } from './pfe-proposes/pfe-proposes.component';
+import { PfeService } from 'app/Entities/Pfe/pfe.service';
 
 @NgModule({
   imports: [
@@ -35,8 +37,9 @@ import { FormBuilder } from '@angular/forms';
     EnseignantService,
     EntrepriseService,
     CompteService,
-    StageService
+    StageService,
+    PfeService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent]
 })
 export class ListesModule { }
