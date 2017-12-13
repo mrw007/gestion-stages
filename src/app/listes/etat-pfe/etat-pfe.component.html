@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header"></div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Sujet</th>
+            <th>Nom et Prénom de l'encadrant</th>
+            <th>Nom de l'entreprise</th>
+            <th>Etat</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of entreprises">
+            <td>{{ aff?.sujet_pfe }}</td>
+            <td>{{ aff?.nom_ens }} {{ aff?.prenom_ens }}</td>
+            <td>{{ aff?.nom_ent }}</td>
+            <td><!-- ngIf normalement lenna 3al etat--></td>
+            <td>
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" mwlConfirmationPopover message="Etes-vous sûr de vouloir supprimer cette demande?" confirmText="Oui"
+              cancelText="Non" placement="top"  (confirm)="refDemande(aff.id)">
+                <i class="icon icon-basic-ban"></i>
+                <span>Refuser</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -25,6 +25,9 @@ import { PfeService } from 'app/Entities/Pfe/pfe.service';
 import { PfePubliesComponent } from './pfe-publies/pfe-publies.component';
 import { PfeProposesEntComponent } from './pfe-proposes-ent/pfe-proposes-ent.component';
 import { DemandesPfeComponent } from './demandes-pfe/demandes-pfe.component';
+import { affectationPfeService } from 'app/Entities/Affectation_pfe/affectationPfe.service';
+import { EtatPfeComponent } from './etat-pfe/etat-pfe.component';
+import { DemandesPfeEnsComponent } from './demandes-pfe-ens/demandes-pfe-ens.component';
 
 
 @NgModule({
@@ -45,8 +48,9 @@ import { DemandesPfeComponent } from './demandes-pfe/demandes-pfe.component';
     EntrepriseService,
     CompteService,
     StageService,
+    affectationPfeService,
     PfeService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent, PfePubliesComponent, PfeProposesEntComponent, DemandesPfeComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent, PfePubliesComponent, PfeProposesEntComponent, DemandesPfeComponent, EtatPfeComponent, DemandesPfeEnsComponent]
 })
 export class ListesModule { }

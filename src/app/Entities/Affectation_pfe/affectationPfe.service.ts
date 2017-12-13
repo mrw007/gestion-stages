@@ -17,7 +17,7 @@ export class affectationPfeService {
         console.log(this.affPfetUrl);
         return this.http.get(this.affPfetUrl + "demandes/" + etat_ens + "/" + etat_admin).map(this.extractData).catch(this.handleError);
     }
-    getAffPfeByIdEtud(etudId: string): Observable<affectationPfe> {
+    getAffPfeByIdEtud(etudId: string): Observable<affectationPfe[]> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });
         console.log(this.affPfetUrl + "/" + etudId);
