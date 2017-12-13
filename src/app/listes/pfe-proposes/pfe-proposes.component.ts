@@ -28,7 +28,7 @@ export class PfeProposesComponent implements OnInit {
   accepter(object): void {
     this.pfeService.updatePfeValid(object.id).subscribe(successCode => {
       this.statusCode = successCode;
-      this.alertService.success("Pfe est accepté");
+      this.alertService.success("Sujet PFE est accepté");
       this.router.navigateByUrl('/DummyComponent', { skipLocationChange: true }).then(() =>
         this.router.navigateByUrl("/listes/pfe_proposes"));
     },
@@ -38,7 +38,7 @@ export class PfeProposesComponent implements OnInit {
   refuser(object): void {
     this.pfeService.deletePfe(object.id).subscribe(successCode => {
       this.statusCode = successCode;
-      this.alertService.danger("Pfe est refusé");
+      this.alertService.danger("Sujet PFE est refusé");
       this.router.navigateByUrl('/DummyComponent', { skipLocationChange: true }).then(() =>
         this.router.navigateByUrl("/listes/pfe_proposes"));
     },

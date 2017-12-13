@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header"></div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Nom et Prénom etudiant</th>
+            <th>Cycle d'étude</th>
+            <th>Niveau d'étude</th>
+            <th>Sujet</th>
+            <th>Nom et Prénom de l'encadrant</th>
+            <th>Nom de l'entreprise</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of entreprises">
+            <td>{{ aff?.nom }} {{ aff?.prenom }}</td>
+            <td>{{ aff?.cycle_etude }}</td>
+            <td>{{ aff?.niveau_etude }}</td>
+            <td>{{ aff?.sujet_pfe }}</td>
+            <td>{{ aff?.nom_ens }} {{ aff?.prenom_ens }}</td>
+            <td>{{ aff?.nom_ent }}</td>
+            <td>
+                <button type="button" class="btn btn-success btn-icon mr-1 mb-1" mwlConfirmationPopover  confirmButtonType="success" message="Etes-vous sûr de vouloir accepter cette demande?" confirmText="Oui"
+                cancelText="Non" placement="top" (confirm)="accDemande(aff.id)">
+                    <i class="icon icon-arrows-check"></i>
+                    <span>Accepter</span>
+                  </button>
+              <span>
+              <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" mwlConfirmationPopover message="Etes-vous sûr de vouloir refuser cette demande?" confirmText="Oui"
+              cancelText="Non" placement="top"  (confirm)="refDemande(aff.id)">
+                <i class="icon icon-basic-ban"></i>
+                <span>Refuser</span>
+              </button>
+            </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

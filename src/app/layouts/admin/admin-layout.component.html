@@ -64,6 +64,21 @@
             </ul>
           </li>
           <li class="navigation-item" appAccordionLink>
+            <a class="navigation-link" appAccordionToggle href="javascript:;">
+              <i class="icon icon-basic-todo-pen"></i>
+              <span>Gestions des PFE</span>
+              <span class="mr-auto"></span>
+            </a>
+            <ul class="navigation-submenu">
+              <li class="navigation-item">
+                <a [routerLink]="['/formulaires/publier_pfe']" class="navigation-link relative" routerLinkActive="open">publier un sujet PFE</a>
+                <a [routerLink]="['/listes/pfe_proposes']" class="navigation-link relative" routerLinkActive="open">Liste des PFE proposés</a>
+                <a [routerLink]="['/listes/demandes_pfe']" class="navigation-link relative" routerLinkActive="open">Demandes de stage PFE</a>
+                <a [routerLink]="['/listes/pfe_pub']" class="navigation-link relative" routerLinkActive="open">Liste des PFE publiés</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item" appAccordionLink>
             <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
               <i class="icon icon-basic-message-txt"></i>
               <span>Contact</span>
@@ -102,12 +117,19 @@
             </a>
           </li>
           <li class="navigation-item" appAccordionLink>
-            <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/offres_de_PFE']">
+            <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/pfe_pub']">
               <i class="icon icon-basic-todolist-pencil"></i>
               <span>Offres de PFE</span>
               <span class="mr-auto"></span>
             </a>
           </li>
+          <li class="navigation-item" appAccordionLink>
+              <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/etat_pfe']">
+                <i class="icon icon-basic-notebook"></i>
+                <span>Mes demandes PFE</span>
+                <span class="mr-auto"></span>
+              </a>
+            </li>
           <li class="navigation-item" appAccordionLink>
             <a class="navigation-link" appAccordionToggle [routerLink]="['/contact']">
               <i class="icon icon-basic-message-txt"></i>
@@ -147,7 +169,7 @@
             </a>
           </li>
           <li class="navigation-item" appAccordionLink>
-            <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/offres_de_PFE']">
+            <a class="navigation-link" appAccordionToggle [routerLink]="['/listes/pfe_pub']">
               <i class="icon icon-basic-todolist-pencil"></i>
               <span>Offres de PFE</span>
               <span class="mr-auto"></span>
@@ -194,6 +216,19 @@
               <li class="navigation-item">
                 <a [routerLink]="['/formulaires/proposer_stage']" class="navigation-link relative" routerLinkActive="open">Proposer un Stage</a>
                 <a [routerLink]="['/listes/stages_proposes_ent']" class="navigation-link relative" routerLinkActive="open">Mes Stages proposés</a>
+              </li>
+            </ul>
+          </li>
+          <li class="navigation-item" appAccordionLink>
+            <a class="navigation-link" appAccordionToggle href="javascript:;">
+              <i class="icon icon-basic-todo-pen"></i>
+              <span>Gestions des PFE</span>
+              <span class="mr-auto"></span>
+            </a>
+            <ul class="navigation-submenu">
+              <li class="navigation-item">
+                <a [routerLink]="['/formulaires/proposer_pfe']" class="navigation-link relative" routerLinkActive="open">Proposer un sujet PFE</a>
+                <a [routerLink]="['/listes/pfe_proposes_ent']" class="navigation-link relative" routerLinkActive="open">Mes PFE proposés</a>
               </li>
             </ul>
           </li>

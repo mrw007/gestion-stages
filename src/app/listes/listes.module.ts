@@ -23,6 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PfeProposesComponent } from './pfe-proposes/pfe-proposes.component';
 import { PfeService } from 'app/Entities/Pfe/pfe.service';
 import { PfePubliesComponent } from './pfe-publies/pfe-publies.component';
+import { PfeProposesEntComponent } from './pfe-proposes-ent/pfe-proposes-ent.component';
+import { DemandesPfeComponent } from './demandes-pfe/demandes-pfe.component';
 
 
 @NgModule({
@@ -45,6 +47,6 @@ import { PfePubliesComponent } from './pfe-publies/pfe-publies.component';
     StageService,
     PfeService
   ],
-  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent, PfePubliesComponent]
+  declarations: [EtudiantsComponent, EnseignantsComponent, EntreprisesComponent, StagesValidesComponent, StagesProposesComponent, EntreprisesAttenteComponent, StagesProposesEntComponent, PfeProposesComponent, PfePubliesComponent, PfeProposesEntComponent, DemandesPfeComponent]
 })
 export class ListesModule { }

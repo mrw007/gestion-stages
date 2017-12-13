@@ -18,20 +18,20 @@ export class ProposerPfeComponent implements OnInit {
 
   public PfeForm: FormGroup;
 
-  post:any;  
-  pfe:any;
-  sujet_pfe: string='';
-  desc_pfe: string='';
-  date_deb:Date;
+  post: any;
+  pfe: any;
+  sujet_pfe: string = '';
+  desc_pfe: string = '';
+  date_deb: Date;
   date_fin: Date;
-  
-  constructor(private fb: FormBuilder, private router: Router ,private pfeService: PfeService, private alertService: AlertService) {
+
+  constructor(private fb: FormBuilder, private router: Router, private pfeService: PfeService, private alertService: AlertService) {
     this.PfeForm = new FormGroup({
       sujet_pfe: new FormControl(),
       desc_pfe: new FormControl(),
       date_deb: new FormControl(),
       date_fin: new FormControl(),
-      
+
     });
   }
 
@@ -39,40 +39,40 @@ export class ProposerPfeComponent implements OnInit {
     let userC = JSON.parse(sessionStorage.getItem('user'));
     console.log(userC);
     this.session = userC;
-    
+
   }
   ngOnInit() {
-this.getSession();
-  
+    this.getSession();
+
   }
   onSubmit() {
-    this.router.navigate( ['/'] );
+    this.router.navigate(['/']);
   }
 
-  OnsubmitPfe(post)
-  {
+  OnsubmitPfe(post) {
     this.sujet_pfe = post.sujet_pfe;
     this.desc_pfe = post.desc_pfe;
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
     this.prop = this.session.id;
-    this.pfe =new Pfe("0",post.sujet_pfe,post.desc_pfe,post.date_deb,post.date_fin,this.prop,0);
-    if(post.date_deb>post.date_fin)
-    {
-        this.alertService.warning("Vérifier les dates");
+    this.pfe = new Pfe("0", post.sujet_pfe, post.desc_pfe, post.date_deb, post.date_fin, this.prop, 0);
+    if (post.date_deb > post.date_fin) {
+      this.alertService.warning("Vérifier les dates");
     }
-    else{
-    this.pfeService.propPfe(this.pfe).subscribe(successCode => {
-    this.statusCode = successCode;
-    this.alertService.success("Votre proposition a été soumise avec succès");
-    this.router.navigateByUrl("/listes/pfe_proposes_ent");
-    },
-    errorCode => {this.statusCode = errorCode;
-      this.alertService.danger("Vérifier vos champs");}
-    
-    );
-   console.log("submit",  this.pfe);  
-  
-}
-}
+    else {
+      this.pfeService.propPfe(this.pfe).subscribe(successCode => {
+        this.statusCode = successCode;
+        this.alertService.success("Votre proposition a été soumise avec succès");
+        this.router.navigateByUrl("/listes/pfe_proposes_ent");
+      },
+        errorCode => {
+          this.statusCode = errorCode;
+          this.alertService.danger("Vérifier vos champs");
+        }
+
+      );
+      console.log("submit", this.pfe);
+
+    }
+  }
 }

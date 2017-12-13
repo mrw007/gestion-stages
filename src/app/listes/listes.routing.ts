@@ -9,6 +9,8 @@ import { EntreprisesAttenteComponent } from 'app/listes/entreprises-attente/entr
 import { StagesProposesEntComponent } from 'app/listes/stages-proposes-ent/stages-proposes-ent.component';
 import { PfeProposesComponent } from 'app/listes/pfe-proposes/pfe-proposes.component';
 import { PfePubliesComponent } from 'app/listes/pfe-publies/pfe-publies.component';
+import { PfeProposesEntComponent } from 'app/listes/pfe-proposes-ent/pfe-proposes-ent.component';
+import { DemandesPfeComponent } from 'app/listes/demandes-pfe/demandes-pfe.component';
 
 export const ListesRoutes: Routes = [
   {
@@ -66,7 +68,7 @@ export const ListesRoutes: Routes = [
       path: 'pfe_proposes',
       component: PfeProposesComponent,
       data: {
-        heading: 'Liste de Pfe Proposés'
+        heading: 'Liste de PFE Proposés'
       },
     },
     {
@@ -74,6 +76,20 @@ export const ListesRoutes: Routes = [
       component: PfePubliesComponent,
       data: {
         heading: 'Liste de Pfe Publiés'
+      },
+    },
+    {
+      path: 'demandes_pfe',
+      component: DemandesPfeComponent,
+      data: {
+        heading: "Liste des demandes d'affectation de Sujet PFE"
+      },
+    },
+    {
+      path: 'pfe_proposes_ent',
+      component: PfeProposesEntComponent,
+      data: {
+        heading: 'Liste des sujets PFE Proposés par vous'
       },
     }]
   }

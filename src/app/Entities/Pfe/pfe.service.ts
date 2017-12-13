@@ -24,7 +24,12 @@ export class PfeService {
         console.log(this.pfetUrl);
         return this.http.get(this.pfetUrl + "/" + 1).map(this.extractData).catch(this.handleError);
     }
-
+    getPfeByID(id : String): Observable<Pfe> {
+        let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: cpHeaders });
+        console.log(this.pfetUrl);
+        return this.http.get(this.pfetUrl + "Id/" + id).map(this.extractData).catch(this.handleError);
+    }
     getPfeByIdProp(propId: string): Observable<Etudiant> {
         let cpHeaders = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: cpHeaders });

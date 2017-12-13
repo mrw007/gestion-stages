@@ -38,8 +38,7 @@ export class PublierPfeComponent implements OnInit {
       sujet_pfe: new FormControl(),
       desc_pfe: new FormControl(),
       date_deb: new FormControl(),
-      date_fin: new FormControl(),
-      id_ent: new FormControl(),
+      date_fin: new FormControl()
     });
   }
   getSession() {
@@ -67,8 +66,7 @@ this.getAllEntreprises();
     this.desc_pfe = post.desc_pfe;
     this.date_deb = post.date_deb;
     this.date_fin = post.date_fin;
-    this.id_ent = post.id_ent;
-    this.pfe =new Pfe("0",post.sujet_pfe,post.desc_pfe,post.date_deb,post.date_fin,post.id_ent,0);
+    this.pfe =new Pfe("0",post.sujet_pfe,post.desc_pfe,post.date_deb,post.date_fin,1,0);
     if(post.date_deb>post.date_fin)
     {
         this.alertService.warning("Vérifier les dates");

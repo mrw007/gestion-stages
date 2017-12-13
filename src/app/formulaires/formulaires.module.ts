@@ -11,7 +11,6 @@ import { EntrepriseService } from 'app/Entities/Entreprise/entreprise.service';
 import { ProposerPfeComponent } from './proposer-pfe/proposer-pfe.component';
 import { PublierPfeComponent } from './publier-pfe/publier-pfe.component';
 import { PfeService } from 'app/Entities/Pfe/pfe.service';
-import { PfeProposesComponent } from '../listes/pfe-proposes/pfe-proposes.component';
 @NgModule({
   imports: [
     RouterModule.forChild(FormulairesRoutes),
@@ -25,6 +24,6 @@ import { PfeProposesComponent } from '../listes/pfe-proposes/pfe-proposes.compon
     EntrepriseService,
     PfeService
   ],
-  declarations: [ProposerStageComponent, PublierStageComponent, ProposerPfeComponent, PublierPfeComponent, PfeProposesComponent]
+  declarations: [ProposerStageComponent, PublierStageComponent, ProposerPfeComponent, PublierPfeComponent]
 })
 export class FormulairesModule { }

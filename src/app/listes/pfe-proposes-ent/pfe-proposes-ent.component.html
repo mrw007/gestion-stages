@@ -1,0 +1,97 @@
+<div class="card">
+    <div class="card-header"></div>
+    <div class="table-responsive">
+      <table class="table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Sujet</th>
+            <th>Description</th>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Etat</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pfe of pfes">
+            <td>{{ pfe.sujet_pfe }}</td>
+            <td>{{ pfe.desc_pfe }}</td>
+            <td>{{ pfe.date_deb }}</td>
+            <td>{{ pfe.date_fin }}</td>
+  
+            <ng-template #acc>Acceptée</ng-template>
+            <ng-template #enc>en cours de vérification</ng-template>
+            <td>
+              <p *ngIf="pfe.etat_proposition==='1';then acc;"></p>
+              <p *ngIf="pfe.etat_proposition==='0';then enc;"></p>
+            </td>
+            <td>
+              <button type="button" class="btn btn-info btn-icon mr-1 mb-1" (click)="open(content,pfe.id)">
+                <i class="icon icon-arrows-sign-up"></i>
+                <span>Modifier</span>
+              </button>
+              <span>
+                <button type="button" class="btn btn-danger btn-icon mr-1 mb-1" mwlConfirmationPopover [message]="message" confirmText="Oui"
+                  cancelText="Non" placement="top" (confirm)="deletePfe(pfe.id)">
+                  <i class="icon icon-basic-ban"></i>
+                  <span>Annuler</span>
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h6 class="modal-title text-uppercase">Modifier Informations du Pfe</h6>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="PfeForm" (ngSubmit)="updatePfe(PfeForm.value);d('Cross click')">
+        <fieldset class="form-group">
+          <label for="prenom">
+            Sujet du Pfe
+          </label>
+          <input type="text" class="form-control" placeholder="Sujet du pfe" required formControlName="sujet_pfe" [(ngModel)]='nPfe.sujet_pfe'
+          />
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="">
+            Description
+          </label>
+          <div>
+            <textarea class="form-control" formControlName="desc_pfe" [(ngModel)]='nPfe.desc_pfe' rows="5"></textarea>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="date_naiss">
+            Date Début du Pfe
+          </label>
+          <div>
+            <div>
+              <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_deb" [(ngModel)]='nPfe.date_deb'>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="date_naiss">
+            Date Fin du Pfe
+          </label>
+          <div>
+            <div>
+              <input class="form-control col-md-4" type="date" id="example-date-input" required formControlName="date_fin" [(ngModel)]='nPfe.date_fin'>
+            </div>
+          </div>
+        </fieldset>
+        <input type="hidden" formControlName="id" [(ngModel)]='nPfe.id'>
+        <input type="hidden" formControlName="id_prop" [(ngModel)]='nPfe.id_prop'>
+        <button class="btn btn-primary" type="submit">Modifier</button>
+      </form>
+    </div>
+  </ng-template>
